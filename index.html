@@ -143,21 +143,8 @@
     position: absolute; left: 0; right: 0; bottom: -2px; height: clamp(12rem, 22vw, 14rem);
     z-index: 1; pointer-events: none;
   }
-  .foam svg { width: 100%; height: 100%; }
-  .foam svg { overflow: visible; }
-  @media (prefers-reduced-motion: no-preference) {
-    .js .foam svg { animation: settle 2.2s var(--ease-out) both, breathe 7s ease-in-out 2.2s infinite alternate; transform-origin: 50% 100%; will-change: transform; }
-    .js .hero.is-offscreen .foam svg, .js .hero.is-offscreen .float { animation-play-state: paused; }
-    .js .foam .pop { animation: pop .5s var(--ease-out) both; transform-box: fill-box; transform-origin: center; }
-  }
-  @keyframes settle {
-    from { transform: translateY(-18%) scaleY(1.22); filter: blur(1.5px); }
-    to   { transform: none; filter: none; }
-  }
-  @keyframes breathe {
-    from { transform: none; }
-    to   { transform: translateY(-3px) scaleY(1.025); }
-  }
+  .foam canvas { display: block; width: 100%; height: 100%; }
+  .js .hero.is-offscreen .float { animation-play-state: paused; }
 
   /* Loose bubbles lifting off the foam, drifting, and popping. */
   .float {
@@ -178,11 +165,6 @@
     84%  { transform: translate(var(--sway), calc(var(--rise) * -.9)) scale(1); opacity: 1; }
     91%  { transform: translate(var(--sway), calc(var(--rise) * -.93)) scale(1.35); opacity: .5; }
     100% { transform: translate(var(--sway), calc(var(--rise) * -.94)) scale(1.6); opacity: 0; }
-  }
-  @keyframes pop {
-    0%   { transform: scale(1); opacity: 1; }
-    60%  { transform: scale(1.25); opacity: .6; }
-    100% { transform: scale(0); opacity: 0; }
   }
 
   /* ---------- Sections ---------- */
@@ -373,19 +355,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 
   <div class="foam" aria-hidden="true">
-    <svg id="foam" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice">
-      <defs>
-        <filter id="lumpy" x="-5%" y="-30%" width="110%" height="160%">
-          <feTurbulence type="fractalNoise" baseFrequency=".022 .05" numOctaves="2" seed="4" result="n"/>
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G"/>
-        </filter>
-        <filter id="soft" x="-5%" y="-30%" width="110%" height="160%">
-          <feTurbulence type="fractalNoise" baseFrequency=".022 .05" numOctaves="2" seed="4" result="n"/>
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G" result="d"/>
-          <feDropShadow dx="0" dy="-1" stdDeviation="5" flood-color="#4f7d9e" flood-opacity=".45"/>
-        </filter>
-      </defs>
-    </svg>
+    <canvas id="foam"></canvas>
   </div>
 </header>
 
@@ -529,44 +499,120 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <script>
   document.documentElement.classList.add('js');
 
-  // Snow foam: one dense mass with a lumpy crest, filled with fine suds cells.
+  // Snow foam as a liquid: a rolling crest, and suds cells carried on slow
+  // currents beneath it. Drawn on canvas; pauses off screen; one still frame
+  // under reduced motion.
   (function () {
-    var svg = document.getElementById('foam');
-    if (!svg) return;
-    var ns = 'http://www.w3.org/2000/svg';
-    var s = 11;
-    function rnd() { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
-    function crest(x) { return 96 + 26 * Math.sin(x / 160 + .4) + 11 * Math.sin(x / 57 + 1.3) + 5 * Math.sin(x / 19); }
-    function el(name, attrs) { var e = document.createElementNS(ns, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+    var cv = document.getElementById('foam');
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d');
+    var hero = document.querySelector('.hero');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var W, H, dpr, cells, phone, raf = 0, last = 0, t = 0, start = 0, visible = true;
+    var BANDS = 6;
 
-    var d = 'M-40 260 L-40 ' + crest(-40).toFixed(1);
-    for (var x = -30; x <= 1240; x += 10) d += ' L' + x + ' ' + crest(x).toFixed(1);
-    d += ' L1240 260 Z';
+    function crest(x, t) {
+      return H * .44
+        + H * .12 * Math.sin(x / 190 + t * .45 + .4)
+        + H * .05 * Math.sin(x / 67 - t * .8 + 1.3)
+        + H * .022 * Math.sin(x / 23 + t * 1.5);
+    }
 
-    var g = el('g', { filter: 'url(#soft)' });
-    g.appendChild(el('path', { d: d, fill: '#fbfcfd' }));
-    var cells = el('g', { fill: '#fbfcfd', stroke: '#c2d3e0', 'stroke-width': '.9', 'vector-effect': 'non-scaling-stroke' });
-    var pops = [];
-    // Jittered packing: fine cells, the odd medium bubble near the crest.
-    var k = window.matchMedia('(max-width: 599px)').matches ? 1.8 : 1;
-    for (var y = 40; y < 240; y += 6.5 * k) {
-      for (var cx = -30 + (y % 13 ? 3 : 0); cx < 1240; cx += 7 * k) {
-        var top = crest(cx);
-        if (y < top + 2) continue;
-        var near = (y - top) < 26;
-        var r = (near && rnd() < .07 ? 6 + rnd() * 5 : 1.6 + rnd() * 2.6) * k;
-        var px = cx + (rnd() - .5) * 4, py = y + (rnd() - .5) * 4;
-        var c = el('circle', { cx: px.toFixed(1), cy: py.toFixed(1), r: r.toFixed(1) });
-        var fade = 1 - Math.max(0, (py - top - 30) / 120);
-        if (fade <= 0.05 || rnd() > fade) continue;
-        c.setAttribute('stroke-opacity', fade.toFixed(2));
-        if (near && r < 3 && rnd() < .05) pops.push(c);
-        cells.appendChild(c);
+    function setup() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      phone = W < 600;
+      var k = phone ? 1.35 : 1, gap = 8.5 * k;
+      cells = [];
+      for (var d = 0; d < 150; d += gap * .8) {
+        for (var x = -20; x < W + 20; x += gap) {
+          var near = d < 22;
+          cells.push({
+            x: x + (Math.random() - .5) * gap,
+            d: d + Math.random() * gap * .8,
+            r: (near && Math.random() < .07 ? 7 + Math.random() * 6 : 1.9 + Math.random() * 3.1) * k,
+            ph: Math.random() * 6.28,
+            pop: 0
+          });
+        }
       }
     }
-    pops.forEach(function (c) { c.setAttribute('class', 'pop'); c.style.animationDelay = (0.9 + rnd() * 1.6).toFixed(2) + 's'; });
-    g.appendChild(cells);
-    svg.appendChild(g);
+
+    function frame(now) {
+      raf = 0;
+      var dt = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now; t += dt;
+      // Settle on load: the crest starts high and slumps into place.
+      var e = Math.min((now - start) / 2200, 1), lift = still ? 0 : (1 - (1 - Math.pow(1 - e, 3))) * H * .28;
+
+      ctx.clearRect(0, 0, W, H);
+
+      // The mass: a liquid surface with a soft shadow along its edge.
+      ctx.beginPath();
+      ctx.moveTo(-10, H + 10);
+      for (var x = -10; x <= W + 10; x += 6) ctx.lineTo(x, crest(x, t) - lift);
+      ctx.lineTo(W + 10, H + 10);
+      ctx.closePath();
+      ctx.save();
+      ctx.shadowColor = 'rgba(79,125,158,.45)'; ctx.shadowBlur = 12; ctx.shadowOffsetY = -1;
+      ctx.fillStyle = '#fbfcfd'; ctx.fill();
+      ctx.restore();
+
+      // Cells ride the surface and drift on currents; draw in depth bands.
+      var paths = [];
+      for (var b = 0; b < BANDS; b++) paths.push(new Path2D());
+      for (var i = 0; i < cells.length; i++) {
+        var c = cells[i];
+        if (!still) {
+          var vx = 7 * Math.sin(c.d / 21 + t * .7) + 5 * Math.sin(c.x / 110 - t * .4) + 4;
+          var vy = 4 * Math.sin(c.x / 80 + t * .6 + c.ph);
+          c.x += vx * dt; c.d += vy * dt;
+          if (c.x > W + 25) c.x -= W + 50;
+          if (c.x < -25) c.x += W + 50;
+          if (c.d < 0) c.d = -c.d;
+          if (c.d > 150) c.d = 150 - (c.d - 150);
+          // Cells at the surface occasionally pop and reform deeper down.
+          if (!c.pop && c.d < 10 && Math.random() < dt * .25) c.pop = .001;
+          if (c.pop) { c.pop += dt * 4; if (c.pop >= 1) { c.pop = 0; c.d = 20 + Math.random() * 110; c.x = Math.random() * W; } }
+        }
+        var fade = 1 - Math.max(0, (c.d - 25) / 120);
+        if (fade <= .04) continue;
+        var y = crest(c.x, t) - lift + c.d;
+        var r = c.r * (1 + .08 * Math.sin(t * 1.3 + c.ph)) * (1 + c.pop * .6);
+        var band = Math.min(BANDS - 1, Math.floor((1 - fade) * BANDS));
+        if (c.pop) band = Math.min(BANDS - 1, band + Math.floor(c.pop * BANDS));
+        var path = paths[band];
+        path.moveTo(c.x + r, y);
+        path.arc(c.x, y, r, 0, 6.2832);
+      }
+      ctx.fillStyle = '#fbfcfd';
+      ctx.lineWidth = .9;
+      for (b = BANDS - 1; b >= 0; b--) {
+        ctx.fill(paths[b]);
+        ctx.strokeStyle = 'rgba(178,200,217,' + (1 - b / BANDS).toFixed(2) + ')';
+        ctx.stroke(paths[b]);
+      }
+
+      if (!still && visible) raf = requestAnimationFrame(frame);
+    }
+
+    function go() { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } }
+    setup();
+    start = performance.now();
+    go();
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { if (cv.clientWidth !== W || cv.clientHeight !== H) { setup(); go(); } }, 150);
+    });
+    if ('IntersectionObserver' in window && hero) {
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible) go();
+      }).observe(hero);
+    }
   })();
 
   // Water beading on the rinse band: clustered, flattened, varied.
