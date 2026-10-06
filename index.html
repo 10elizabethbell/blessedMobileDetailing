@@ -246,39 +246,42 @@
   /* ---------- Services ---------- */
   .services { background: var(--foam); }
   .menu { list-style: none; margin: 2.25rem 0 0; padding: 0; border-top: 2px solid var(--ink); }
-  .menu li {
-    display: grid; gap: .35rem 1.5rem;
-    grid-template-columns: auto 1fr;
+  .menu li { border-bottom: 1px solid var(--line); }
+  /* The whole row is the link; one arrow per row is the only cue. */
+  .menu .row {
+    display: grid; gap: .35rem 1.25rem;
+    grid-template-columns: auto 1fr auto; align-items: start;
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--line);
+    color: inherit; text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
   .menu .mark {
-    grid-row: span 3; width: 1.05rem; height: 1.05rem; margin-top: .45rem; border-radius: 50%;
+    grid-row: span 2; width: 1.05rem; height: 1.05rem; margin-top: .45rem; border-radius: 50%;
     background: var(--gold);
   }
-  .menu h3 { font-size: clamp(1.35rem, 4.4vw, 1.75rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }
+  .menu h3 { font-size: clamp(1.35rem, 4.4vw, 1.75rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; transition: color .2s var(--ease-out); }
   .menu h3 small { display: block; font-size: .95rem; font-weight: 700; letter-spacing: .04em; color: var(--ink-soft); text-transform: uppercase; margin-top: .2rem; }
-  .menu p { color: var(--ink-soft); max-width: 52ch; }
-  .menu .quote {
-    justify-self: start; margin-top: .4rem;
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-weight: 700; color: var(--water); text-decoration: none;
-    border-bottom: 1.5px solid currentColor; padding-bottom: 1px;
+  .menu p { grid-column: 2; color: var(--ink-soft); max-width: 52ch; }
+  .menu .go {
+    grid-column: 3; grid-row: 1 / span 2; align-self: center;
+    display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%;
+    border: 1.5px solid var(--line); color: var(--water);
+    transition: background-color .2s var(--ease-out), color .2s var(--ease-out), border-color .2s var(--ease-out), transform .25s var(--ease-out);
   }
-  .menu .quote:hover { color: var(--rinse-deep); }
-  .menu .quote .ico { width: 1em; height: 1em; transition: transform .25s var(--ease-out); }
-  .menu .quote:hover .ico { transform: translateX(3px); }
-  .menu li.lead { padding-block: 2rem; }
+  .menu .go .ico { width: 1.1rem; height: 1.1rem; }
+  .menu .row:hover h3 { color: var(--rinse); }
+  .menu .row:hover .go { background: var(--water); border-color: var(--water); color: #fff; transform: translateX(3px); }
+  .menu .row:active .go { background: var(--ink); border-color: var(--ink); color: var(--gold-bright); transform: none; }
+  .menu .row:focus-visible { outline-offset: 4px; }
+  .menu li.lead .row { padding-block: 2rem; }
   .menu li.lead h3 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
   .menu li.lead .mark { width: 1.35rem; height: 1.35rem; margin-top: .6rem; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
   @media (min-width: 900px) {
     .services .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4rem; align-items: start; }
     .services .sec-head { position: sticky; top: 2rem; }
     .menu { margin-top: 0; }
-    .menu li { grid-template-columns: auto 1fr auto; align-items: baseline; }
-    .menu .mark { grid-row: span 2; }
-    .menu .quote { grid-column: 3; grid-row: 1; justify-self: end; margin-top: 0; white-space: nowrap; }
   }
 
   /* ---------- How it works ---------- */
@@ -427,32 +430,44 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="wrap">
       <div class="sec-head">
         <h2 id="services-h">Pick your detail</h2>
-        <p>Every job is done at your place. Text what you drive and which detail you want, and we'll send back a quote.</p>
+        <p>Every job is done at your place. Tap a detail to text us about it, and we'll send back a quote.</p>
       </div>
       <ul class="menu">
         <li class="lead">
-          <span class="mark" aria-hidden="true"></span>
-          <h3>Full Detail<small>Interior + Exterior</small></h3>
-          <p>The whole car, inside and out, brought back to clean from the carpets to the wheels.</p>
-          <a class="quote" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20a%20Full%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">Text for a quote<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20a%20Full%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">
+            <span class="mark" aria-hidden="true"></span>
+            <h3>Full Detail<small>Interior + Exterior</small></h3>
+            <p>The whole car, inside and out, brought back to clean from the carpets to the wheels.</p>
+            <span class="go" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            <span class="sr"> — text for a quote</span>
+          </a>
         </li>
         <li>
-          <span class="mark" aria-hidden="true"></span>
-          <h3>Interior Detail</h3>
-          <p>Seats, carpets, dash, and door panels cleaned and refreshed so the cabin feels new again.</p>
-          <a class="quote" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Interior%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">Text for a quote<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Interior%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">
+            <span class="mark" aria-hidden="true"></span>
+            <h3>Interior Detail</h3>
+            <p>Seats, carpets, dash, and door panels cleaned and refreshed so the cabin feels new again.</p>
+            <span class="go" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            <span class="sr"> — text for a quote</span>
+          </a>
         </li>
         <li>
-          <span class="mark" aria-hidden="true"></span>
-          <h3>Exterior Detail</h3>
-          <p>Paint, glass, wheels, and tires washed and finished to a deep, clean shine.</p>
-          <a class="quote" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Exterior%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">Text for a quote<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Exterior%20Detail.%0AVehicle%3A%20%0AWhen%3A%20">
+            <span class="mark" aria-hidden="true"></span>
+            <h3>Exterior Detail</h3>
+            <p>Paint, glass, wheels, and tires washed and finished to a deep, clean shine.</p>
+            <span class="go" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            <span class="sr"> — text for a quote</span>
+          </a>
         </li>
         <li>
-          <span class="mark" aria-hidden="true"></span>
-          <h3>Express Refresh</h3>
-          <p>A quick inside-and-out clean to keep things fresh between full details.</p>
-          <a class="quote" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Express%20Refresh.%0AVehicle%3A%20%0AWhen%3A%20">Text for a quote<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="row" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20a%20quote%20for%20an%20Express%20Refresh.%0AVehicle%3A%20%0AWhen%3A%20">
+            <span class="mark" aria-hidden="true"></span>
+            <h3>Express Refresh</h3>
+            <p>A quick inside-and-out clean to keep things fresh between full details.</p>
+            <span class="go" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+            <span class="sr"> — text for a quote</span>
+          </a>
         </li>
       </ul>
     </div>
