@@ -310,6 +310,10 @@
   .ba-layer.is-empty .ba-empty { display: grid; }
   .ba-before .ba-empty { padding-right: calc(22% + (100% - var(--pos)) / 2); }
   .ba-after .ba-empty { padding-left: calc(22% + var(--pos) / 2); }
+  /* Neither photo yet: one centered note instead of two clipped halves. */
+  .ba-bubble.is-blank { cursor: default; }
+  .ba-bubble.is-blank .ba-before, .ba-bubble.is-blank .ba-handle { display: none; }
+  .ba-bubble.is-blank .ba-after .ba-empty { padding: 22%; }
   .ba-handle {
     position: absolute; top: 0; bottom: 0; left: var(--pos); z-index: 3; width: 2.75rem; margin-left: -1.375rem;
     display: grid; place-items: center; outline: none;
@@ -489,7 +493,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <div class="ba-layer ba-after"><img alt=""><span class="ba-empty">After photo coming soon</span></div>
             <div class="ba-layer ba-before"><img alt=""><span class="ba-empty">Before photo coming soon</span></div>
             <div class="ba-handle" role="slider" tabindex="0" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span></span></div>
-            <span class="glint" aria-hidden="true"></span>
           </div>
           <figcaption>
             <span class="ba-tag">Before</span>
@@ -988,6 +991,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var s = SHOTS[key];
       fill(beforeL, s.before, s.name + ', before');
       fill(afterL, s.after, s.name + ', after');
+      var blank = !s.before && !s.after;
+      bubble.classList.toggle('is-blank', blank);
+      afterL.querySelector('.ba-empty').textContent = blank ? 'Photos coming soon' : 'After photo coming soon';
       nameEl.textContent = s.name;
       wipe();
     }
