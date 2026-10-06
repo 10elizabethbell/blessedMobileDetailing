@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T17:32:37-04:00",
+  "title": "Design System: Blessed Mobile Detailing",
+  "extensions": {
+    "colorMeta": {
+      "gold": {
+        "role": "primary",
+        "displayName": "Metallic Gold",
+        "canonical": "#c8962e",
+        "tonalRamp": [
+          "oklch(15% 0.050 81.3)",
+          "oklch(26% 0.073 81.3)",
+          "oklch(38% 0.096 81.3)",
+          "oklch(49% 0.119 81.3)",
+          "oklch(61% 0.119 81.3)",
+          "oklch(72% 0.096 81.3)",
+          "oklch(84% 0.073 81.3)",
+          "oklch(95% 0.050 81.3)"
+        ]
+      },
+      "gold-bright": {
+        "role": "primary",
+        "displayName": "Polished Gold",
+        "canonical": "#e2b54a",
+        "tonalRamp": [
+          "oklch(15% 0.050 85.8)",
+          "oklch(26% 0.073 85.8)",
+          "oklch(38% 0.096 85.8)",
+          "oklch(49% 0.119 85.8)",
+          "oklch(61% 0.119 85.8)",
+          "oklch(72% 0.096 85.8)",
+          "oklch(84% 0.073 85.8)",
+          "oklch(95% 0.050 85.8)"
+        ]
+      },
+      "gold-ink": {
+        "role": "primary",
+        "displayName": "Deep Gold Ink",
+        "canonical": "#85600f",
+        "tonalRamp": [
+          "oklch(15% 0.050 80.7)",
+          "oklch(26% 0.073 80.7)",
+          "oklch(38% 0.096 80.7)",
+          "oklch(49% 0.101 80.7)",
+          "oklch(61% 0.101 80.7)",
+          "oklch(72% 0.096 80.7)",
+          "oklch(84% 0.073 80.7)",
+          "oklch(95% 0.050 80.7)"
+        ]
+      },
+      "rinse": {
+        "role": "secondary",
+        "displayName": "Rinse Blue",
+        "canonical": "#155a88",
+        "tonalRamp": [
+          "oklch(15% 0.050 243.6)",
+          "oklch(26% 0.073 243.6)",
+          "oklch(38% 0.096 243.6)",
+          "oklch(49% 0.100 243.6)",
+          "oklch(61% 0.100 243.6)",
+          "oklch(72% 0.096 243.6)",
+          "oklch(84% 0.073 243.6)",
+          "oklch(95% 0.050 243.6)"
+        ]
+      },
+      "rinse-deep": {
+        "role": "secondary",
+        "displayName": "Deep Rinse",
+        "canonical": "#0f4a72",
+        "tonalRamp": [
+          "oklch(15% 0.050 244.2)",
+          "oklch(26% 0.073 244.2)",
+          "oklch(38% 0.089 244.2)",
+          "oklch(49% 0.089 244.2)",
+          "oklch(61% 0.089 244.2)",
+          "oklch(72% 0.089 244.2)",
+          "oklch(84% 0.073 244.2)",
+          "oklch(95% 0.050 244.2)"
+        ]
+      },
+      "water": {
+        "role": "secondary",
+        "displayName": "Water Blue",
+        "canonical": "#1d6fa5",
+        "tonalRamp": [
+          "oklch(15% 0.050 243.2)",
+          "oklch(26% 0.073 243.2)",
+          "oklch(38% 0.096 243.2)",
+          "oklch(49% 0.114 243.2)",
+          "oklch(61% 0.114 243.2)",
+          "oklch(72% 0.096 243.2)",
+          "oklch(84% 0.073 243.2)",
+          "oklch(95% 0.050 243.2)"
+        ]
+      },
+      "rinse-text-soft": {
+        "role": "secondary",
+        "displayName": "Rinse Haze",
+        "canonical": "#d5e6f2",
+        "tonalRamp": [
+          "oklch(15% 0.024 238.4)",
+          "oklch(26% 0.024 238.4)",
+          "oklch(38% 0.024 238.4)",
+          "oklch(49% 0.024 238.4)",
+          "oklch(61% 0.024 238.4)",
+          "oklch(72% 0.024 238.4)",
+          "oklch(84% 0.024 238.4)",
+          "oklch(95% 0.024 238.4)"
+        ]
+      },
+      "ripple-light": {
+        "role": "secondary",
+        "displayName": "Spray Blue",
+        "canonical": "#9cc3de",
+        "tonalRamp": [
+          "oklch(15% 0.050 238.6)",
+          "oklch(26% 0.057 238.6)",
+          "oklch(38% 0.057 238.6)",
+          "oklch(49% 0.057 238.6)",
+          "oklch(61% 0.057 238.6)",
+          "oklch(72% 0.057 238.6)",
+          "oklch(84% 0.057 238.6)",
+          "oklch(95% 0.050 238.6)"
+        ]
+      },
+      "foam": {
+        "role": "neutral",
+        "displayName": "Foam White",
+        "canonical": "#fbfcfd",
+        "tonalRamp": [
+          "oklch(15% 0.002 247.8)",
+          "oklch(26% 0.002 247.8)",
+          "oklch(38% 0.002 247.8)",
+          "oklch(49% 0.002 247.8)",
+          "oklch(61% 0.002 247.8)",
+          "oklch(72% 0.002 247.8)",
+          "oklch(84% 0.002 247.8)",
+          "oklch(95% 0.002 247.8)"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#eef4f8",
+        "tonalRamp": [
+          "oklch(15% 0.008 236.6)",
+          "oklch(26% 0.008 236.6)",
+          "oklch(38% 0.008 236.6)",
+          "oklch(49% 0.008 236.6)",
+          "oklch(61% 0.008 236.6)",
+          "oklch(72% 0.008 236.6)",
+          "oklch(84% 0.008 236.6)",
+          "oklch(95% 0.008 236.6)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Waterline",
+        "canonical": "#d3e0e9",
+        "tonalRamp": [
+          "oklch(15% 0.019 237.8)",
+          "oklch(26% 0.019 237.8)",
+          "oklch(38% 0.019 237.8)",
+          "oklch(49% 0.019 237.8)",
+          "oklch(61% 0.019 237.8)",
+          "oklch(72% 0.019 237.8)",
+          "oklch(84% 0.019 237.8)",
+          "oklch(95% 0.019 237.8)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#14171a",
+        "tonalRamp": [
+          "oklch(15% 0.008 248.2)",
+          "oklch(26% 0.008 248.2)",
+          "oklch(38% 0.008 248.2)",
+          "oklch(49% 0.008 248.2)",
+          "oklch(61% 0.008 248.2)",
+          "oklch(72% 0.008 248.2)",
+          "oklch(84% 0.008 248.2)",
+          "oklch(95% 0.008 248.2)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#3d4a55",
+        "tonalRamp": [
+          "oklch(15% 0.025 244.0)",
+          "oklch(26% 0.025 244.0)",
+          "oklch(38% 0.025 244.0)",
+          "oklch(49% 0.025 244.0)",
+          "oklch(61% 0.025 244.0)",
+          "oklch(72% 0.025 244.0)",
+          "oklch(84% 0.025 244.0)",
+          "oklch(95% 0.025 244.0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero H1 only; uppercase 900, first word in gold-ink."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, uppercase 900; closing headline and town names scale toward display size."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service names and step titles, sentence-case 800."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions in ink-soft, 34-52ch."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero pitch, max 30ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Button text and phone links."
+      }
+    },
+    "shadows": [
+      {
+        "name": "gold-lift",
+        "value": "0 1px 0 rgba(255,255,255,.55) inset, 0 6px 18px -6px rgba(133,96,15,.55)",
+        "purpose": "Primary button at rest."
+      },
+      {
+        "name": "gold-lift-hover",
+        "value": "0 1px 0 rgba(255,255,255,.6) inset, 0 10px 24px -8px rgba(133,96,15,.6)",
+        "purpose": "Primary button hover, with 1px rise."
+      },
+      {
+        "name": "medallion-halo",
+        "value": "0 0 0 3px #c8962e, 0 0 0 10px #fff, 0 0 0 11px #d3e0e9, 0 30px 60px -20px rgba(15,74,114,.45)",
+        "purpose": "Large hero logo medallion."
+      },
+      {
+        "name": "logo-ring",
+        "value": "0 0 0 2px #c8962e, 0 4px 10px -4px rgba(20,23,26,.5)",
+        "purpose": "Header and footer logo."
+      },
+      {
+        "name": "sticky-veil",
+        "value": "0 -8px 24px -12px rgba(15,74,114,.25)",
+        "purpose": "Mobile booking bar, paired with backdrop-filter saturate(1.4) blur(12px)."
+      },
+      {
+        "name": "bead",
+        "value": "inset 0 -2px 2px rgba(3,28,48,.6), inset 0 1px 1px rgba(255,255,255,.3), 0 2px 3px rgba(3,28,48,.4)",
+        "purpose": "Water drops on the rinse band."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "All transitions and the foam settle."
+      },
+      {
+        "name": "color",
+        "value": "0.18s",
+        "purpose": "Button background, text, border transitions."
+      },
+      {
+        "name": "lift",
+        "value": "0.25s",
+        "purpose": "Button shadow/transform and quote-arrow nudge."
+      },
+      {
+        "name": "sticky-slide",
+        "value": "0.45s",
+        "purpose": "Sticky bar sliding out while hero CTAs are visible."
+      },
+      {
+        "name": "foam-settle",
+        "value": "2.2s",
+        "purpose": "Foam bank settles in from translateY(-18%) scaleY(1.22) blur(1.5px); disabled under reduced motion."
+      },
+      {
+        "name": "cell-pop",
+        "value": "0.5s",
+        "purpose": "A few crest cells pop after 0.9-2.5s delay; disabled under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "foam-cells",
+        "value": "600px"
+      },
+      {
+        "name": "sm",
+        "value": "760px"
+      },
+      {
+        "name": "md",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Gold pill for the one booking action (Tap to Text & Book).",
+      "html": "<a class=\"ds-btn ds-btn-gold\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z\"/><path d=\"M8.5 8.5h7M8.5 11.5h4.5\"/></svg>Tap to Text &amp; Book</a>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.5rem;padding:.9rem 1.5rem;font:inherit;font-weight:800;font-size:1.0625rem;letter-spacing:.01em;text-decoration:none;border-radius:999px;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .18s var(--ease-out),color .18s var(--ease-out),border-color .18s var(--ease-out),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);} .ds-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;} .ds-btn:active{background:var(--ink);color:var(--gold-bright);border-color:var(--ink);transform:none;box-shadow:none;} .ds-btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 6px 18px -6px rgba(133,96,15,.55);} .ds-btn-gold:hover{background:var(--gold-bright);transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -8px rgba(133,96,15,.6);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quieter white pill with a 1.5px cool border, used for Call.",
+      "html": "<a class=\"ds-btn ds-btn-line\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.7 2 2 0 0 1 5 3.5z\"/></svg>Call (929) 795-8823</a>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.5rem;padding:.9rem 1.5rem;font:inherit;font-weight:800;font-size:1.0625rem;letter-spacing:.01em;text-decoration:none;border-radius:999px;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .18s var(--ease-out),color .18s var(--ease-out),border-color .18s var(--ease-out),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);} .ds-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;} .ds-btn:active{background:var(--ink);color:var(--gold-bright);border-color:var(--ink);transform:none;box-shadow:none;} .ds-btn-line{background:#fff;color:var(--ink);border:1.5px solid #b7c8d4;font-weight:700;} .ds-btn-line:hover{background:var(--mist);border-color:var(--ink-soft);}"
+    },
+    {
+      "name": "Service Menu Row",
+      "kind": "custom",
+      "refersTo": "link-quote",
+      "description": "Ruled service row: gold dot mark, title, description, Text for a quote link.",
+      "html": "<ul class=\"ds-menu\"><li><span class=\"ds-mark\"></span><h3>Full Detail<small>Interior + Exterior</small></h3><p>The whole car, inside and out, brought back to clean from the carpets to the wheels.</p><a class=\"ds-quote\" href=\"#\">Text for a quote<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\"/></svg></a></li><li><span class=\"ds-mark\"></span><h3>Interior Detail</h3><p>Seats, carpets, dash, and door panels cleaned and refreshed.</p><a class=\"ds-quote\" href=\"#\">Text for a quote<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\"/></svg></a></li></ul>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-menu{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);background:var(--foam);color:var(--ink);} .ds-menu li{display:grid;gap:.35rem 1.5rem;grid-template-columns:auto 1fr;padding:1.5rem 0;border-bottom:1px solid var(--line);} .ds-mark{grid-row:span 3;width:1.05rem;height:1.05rem;margin-top:.45rem;border-radius:50%;background:var(--gold);} .ds-menu h3{margin:0;font-size:1.6rem;font-weight:800;letter-spacing:-.015em;line-height:1.15;} .ds-menu h3 small{display:block;font-size:.95rem;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin-top:.2rem;} .ds-menu p{margin:0;color:var(--ink-soft);max-width:52ch;line-height:1.6;} .ds-quote{justify-self:start;margin-top:.4rem;display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--water);text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:1px;} .ds-quote svg{transition:transform .25s var(--ease-out);} .ds-quote:hover{color:var(--rinse-deep);} .ds-quote:hover svg{transform:translateX(3px);} .ds-quote:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px;}"
+    },
+    {
+      "name": "Step Numeral",
+      "kind": "custom",
+      "description": "Giant rinse-blue numeral anchoring a process step, in place of an icon.",
+      "html": "<div class=\"ds-step\"><span class=\"ds-num\">2</span><div><h3>We come to you</h3><p>Your driveway, your office lot, wherever the car is parked.</p></div></div>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-step{display:grid;grid-template-columns:auto 1fr;gap:0 1.25rem;align-items:start;background:var(--mist);padding:1.5rem;color:var(--ink);} .ds-num{font-size:6rem;font-weight:900;line-height:.8;color:var(--rinse);letter-spacing:-.05em;min-width:.7em;} .ds-step h3{margin:.35rem 0 0;font-size:1.6rem;font-weight:800;letter-spacing:-.015em;line-height:1.05;} .ds-step p{margin:.4rem 0 0;color:var(--ink-soft);max-width:34ch;line-height:1.6;}"
+    },
+    {
+      "name": "Town List on Rinse",
+      "kind": "custom",
+      "description": "Headline-scale uppercase town names with gold-bright dots on the rinse band.",
+      "html": "<div class=\"ds-area\"><h2>Where we work</h2><ul class=\"ds-towns\"><li>Toms River</li><li>Brick</li><li>Lacey</li></ul></div>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-area{background:var(--rinse);color:#fff;padding:2rem;} .ds-area h2{margin:0;font-size:2.5rem;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;line-height:1.05;} .ds-towns{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 2.25rem;} .ds-towns li{display:flex;align-items:center;gap:.45em;font-size:2.25rem;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;line-height:1.05;} .ds-towns li::before{content:'';flex:none;width:.26em;height:.26em;border-radius:50%;background:var(--gold-bright);box-shadow:0 1px 2px rgba(0,0,0,.3);}"
+    },
+    {
+      "name": "Ripple Seam",
+      "kind": "custom",
+      "description": "Three wave strokes over a 50/50 split joining two bands; the only section divider.",
+      "html": "<svg class=\"ds-ripple\" viewBox=\"0 0 1200 28\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M0 8 Q 75 2 150 8 T 300 8 T 450 8 T 600 8 T 750 8 T 900 8 T 1050 8 T 1200 8\"/><path d=\"M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14\"/><path d=\"M0 20 Q 75 14 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20\"/></svg>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-ripple{display:block;width:100%;height:28px;color:var(--water);background:linear-gradient(var(--foam) 50%,var(--mist) 50%);} .ds-ripple path{fill:none;stroke:currentColor;stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-opacity:.35;}"
+    },
+    {
+      "name": "Sticky Booking Bar",
+      "kind": "nav",
+      "refersTo": "sticky-call",
+      "description": "Mobile bottom bar: full-width gold primary plus circular call button; hides while hero CTAs are visible.",
+      "html": "<nav class=\"ds-sticky\"><a class=\"ds-btn ds-btn-gold\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z\"/><path d=\"M8.5 8.5h7M8.5 11.5h4.5\"/></svg>Tap to Text &amp; Book</a><a class=\"ds-call\" href=\"#\" aria-label=\"Call\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.7 2 2 0 0 1 5 3.5z\"/></svg></a></nav>",
+      "css": ":host{--foam:#fbfcfd;--mist:#eef4f8;--rinse:#155a88;--rinse-deep:#0f4a72;--water:#1d6fa5;--gold:#c8962e;--gold-bright:#e2b54a;--gold-ink:#85600f;--ink:#14171a;--ink-soft:#3d4a55;--line:#d3e0e9;--ease-out:cubic-bezier(.16,1,.3,1);font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;} .ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.5rem;padding:.9rem 1.5rem;font:inherit;font-weight:800;font-size:1.0625rem;letter-spacing:.01em;text-decoration:none;border-radius:999px;border:2px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .18s var(--ease-out),color .18s var(--ease-out),border-color .18s var(--ease-out),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);} .ds-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;} .ds-btn:active{background:var(--ink);color:var(--gold-bright);border-color:var(--ink);transform:none;box-shadow:none;} .ds-sticky{display:flex;gap:.6rem;align-items:center;padding:.7rem 1rem;background:rgba(251,252,253,.94);backdrop-filter:saturate(1.4) blur(12px);border-top:1px solid var(--line);box-shadow:0 -8px 24px -12px rgba(15,74,114,.25);} .ds-sticky .ds-btn{flex:1;} .ds-btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 6px 18px -6px rgba(133,96,15,.55);} .ds-btn-gold:hover{background:var(--gold-bright);} .ds-call{width:3.5rem;height:3.5rem;flex:none;border-radius:50%;display:grid;place-items:center;color:var(--ink);border:2px solid var(--ink);background:#fff;} .ds-call:focus-visible{outline:3px solid var(--gold);outline-offset:3px;} .ds-call:active{background:var(--ink);color:var(--gold-bright);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Snow-Foam Pass",
+    "overview": "**Creative North Star: \"The Snow-Foam Pass\"**\n\nThe page is the moment a car starts getting clean: a bright mass of suds settling along the bottom of a cool mist-blue hero, beads of water on a rinse-blue band, and gold trim held back for the things that matter. The ground is cool foam white and mist, never dark; depth comes from foam, water, and the round gold-ringed logo medallion, not from photography or card stacks.\n\nDensity is low and the voice is loud. Every heading is heavy uppercase system sans, tightly tracked, set large enough to read from arm's length on a phone. Content runs as ruled lists and big numerals rather than boxed cards, and sections hand off through tinted bands joined by ripple seams: foam to mist to rinse and back to foam. The one interaction that matters (text to book) is always a gold pill, and on phones it is one thumb away in a sticky bar that steps aside while the hero's own buttons are visible.\n\nGold is the brand's thread from the black-and-gold logo, but it is rationed: in this light world it reads as trim, never as a field. The world rejects the category default of a dark hero over a car photo followed by an icon-card grid.",
+    "keyCharacteristics": [
+      "Cool light ground: foam white and mist blue, with one saturated rinse-blue band.",
+      "Heavy uppercase system sans (800-900) for every heading; regular weight body in ink-soft.",
+      "Gold rationed to the primary action, solid dot marks, focus/selection, the logo ring, and the H1 word BLESSED.",
+      "Ruled lists and giant numerals instead of cards.",
+      "Procedural world materials: foam cell mass, water beading, ripple seams.",
+      "Pills and circles only; no rectangles with corners."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Trim Rule",
+        "body": "Gold is trim, not a field. It appears only as the primary action fill, small solid dot marks, focus/selection/caret, the logo ring, and the single gold word in the H1. Step numerals, headline accents, links, and secondary buttons are blue or ink, never gold.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold-As-Text Rule",
+        "body": "When gold has to be read as text on a light ground, it is gold-ink. The mid and bright golds are fills and marks only.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Rinse Band Rule",
+        "body": "Rinse blue is a full-bleed field exactly once per page; every other band is foam or mist.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight Carries It Rule",
+        "body": "Hierarchy is built with weight (900 / 800 / 400), case, and size, never with a second family or color changes for emphasis. Every H1/H2 is uppercase 900 with negative tracking; every H3 is sentence-case 800.",
+        "section": "typography"
+      },
+      {
+        "name": "The Balanced Heading Rule",
+        "body": "Headings use text-wrap: balance and body uses text-wrap: pretty, at 1.05 line-height for headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tinted Shadow Rule",
+        "body": "Shadows are tinted by what casts them: gold-brown under gold, rinse-navy under the medallion and sticky bar. No neutral grey drop shadows and no hard offset shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Press Flattens Rule",
+        "body": "Pressing any button removes its shadow and lift and inverts it to ink with gold-bright text.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep every ground cool and light (foam, mist), with rinse blue as the single saturated band.",
+      "**Do** reserve gold for the primary action, dot marks, focus/selection, the logo ring, and the gold-ink H1 word.",
+      "**Do** set every H1/H2 in 900-weight uppercase with -0.03 to -0.035em tracking.",
+      "**Do** present offerings as ruled rows with dot marks and lists of big type, not boxed cards.",
+      "**Do** join bands with ripple seams drawn over a 50/50 split of the adjoining colors, at 0.35 stroke opacity in water blue or 0.75 in spray blue next to rinse.",
+      "**Do** make the primary action a gold pill with ink text, and invert every button to ink with gold-bright text on press.",
+      "**Do** keep the booking action one thumb away on phones via the sticky bar, hidden while the hero CTAs are visible.",
+      "**Do** honor reduced motion: foam settle, cell pops, and smooth scroll all switch off."
+    ],
+    "donts": [
+      "**Don't** use a dark hero over a car photo or a grid of icon cards.",
+      "**Don't** use gold for large fields, step numbers, headline accents, links, or secondary buttons.",
+      "**Don't** set gold-bright or gold as text on foam or mist; use gold-ink.",
+      "**Don't** add ornament outside the world's materials (foam, water beading, ripple seams, the logo medallion).",
+      "**Don't** introduce cornered cards, square buttons, or hard offset shadows."
+    ]
+  }
+}
