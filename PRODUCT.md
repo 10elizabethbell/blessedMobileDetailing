@@ -36,7 +36,8 @@ They come to you: driveway or office lot, no drop-off, no waiting room. Booking 
 
 ## Evidence on Hand
 
-- Logo only. No photos, reviews, testimonials, years in business, hours, or owner name are confirmed. Do not fabricate any. Facebook photos were not retrievable without login; to be added later if the user supplies them.
+- Logo (logo-source.jpg) and one real job: exterior + interior photos of a detailed black Hyundai Tucson, supplied by the user 2026-10-06 (photos/; plate painted out).
+- No reviews, testimonials, years in business, hours, or owner name are confirmed. Do not fabricate any.
 
 ## Product Principles
 
