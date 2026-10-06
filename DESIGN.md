@@ -86,10 +86,12 @@ components:
   button-secondary-active:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.gold-bright}"
-  link-quote:
+  row-go:
     textColor: "{colors.water}"
-  link-quote-hover:
-    textColor: "{colors.rinse-deep}"
+    border: "1.5px solid {colors.line}"
+  row-go-hover:
+    backgroundColor: "{colors.water}"
+    textColor: "#ffffff"
   sticky-call:
     backgroundColor: "#ffffff"
     textColor: "{colors.ink}"
@@ -129,7 +131,7 @@ A cool water palette (foam, mist, rinse) with a single metallic gold accent rati
 ### Secondary
 - **Rinse Blue** (rinse): the one saturated field (the service-area band), the step numerals, and the second line of the hero headline (YOUR DRIVEWAY.).
 - **Deep Rinse** (rinse-deep): hover state for blue text links; the tint of every navy shadow (sticky bar, photo bubbles).
-- **Water Blue** (water): links, the "Text for a quote" action, icon tint for location, the dark ripple seam stroke, and the scrollbar thumb.
+- **Water Blue** (water): links, the service rows' circular arrow cue, icon tint for location, the dark ripple seam stroke, and the scrollbar thumb.
 - **Rinse Haze** (rinse-text-soft): secondary text on the rinse band.
 - **Spray Blue** (ripple-light): ripple seam stroke where a seam touches the rinse band.
 
@@ -213,7 +215,7 @@ Big, round, and physical: they rise on hover and invert on press.
 - **Motion:** 0.18s color transitions and 0.25s shadow/transform transitions on cubic-bezier(.16, 1, .3, 1).
 
 ### Service Menu (signature)
-A ruled list, not a card grid. Each row: a solid gold dot (1.05rem; 1.35rem on the lead row), a title-weight service name, a soft-ink description, and a water-blue "Text for a quote" link with a 1.5px underline and an arrow that slides 3px on hover. The lead row (the flagship service) gets more padding and a larger title.
+A ruled list, not a card grid. Each row: a solid gold dot (1.05rem; 1.35rem on the lead row), a title-weight service name, and a soft-ink description. The whole row is one link (an SMS pre-filled with that service), cued only by a 2.75rem circular arrow at the row's end: hairline ring and water-blue arrow at rest; on hover the circle fills water blue, the arrow turns white and nudges 3px, and the title turns rinse; on press it inverts to ink with gold-bright. Never repeat a text CTA label on every row; the section intro carries "tap a detail" once, and a visually hidden "text for a quote" keeps each link's accessible name complete. The lead row (the flagship service) gets more padding and a larger title.
 
 ### Step Numerals
 Giant 900-weight rinse-blue numerals beside (phone) or above (desktop) a title and one sentence. They replace icons as the step marker.
