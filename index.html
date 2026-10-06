@@ -102,15 +102,14 @@
   }
   .hero-grid { display: grid; gap: 2rem; padding-top: clamp(1rem, 4vw, 3rem); position: relative; z-index: 2; }
   .hero h1 {
-    font-size: clamp(2.75rem, 12.5vw, 6rem);
+    font-size: clamp(2.6rem, 11.5vw, 5.25rem);
     font-weight: 900;
     letter-spacing: -0.035em;
     line-height: .92;
     text-transform: uppercase;
   }
-  /* Deliberate echo of the logo, where BLESSED is the gold word. */
-  .hero h1 .gold { color: var(--gold-ink); display: block; }
-  .hero h1 .rest { display: block; }
+  .hero h1 .line { display: block; }
+  .hero h1 .accent { color: var(--rinse); }
   .pitch {
     margin-top: 1.25rem;
     font-size: clamp(1.125rem, 2.4vw, 1.375rem);
@@ -126,7 +125,7 @@
 
   .medallion { display: none; }
   @media (min-width: 900px) {
-    .hero-grid { grid-template-columns: 1.25fr .75fr; align-items: center; }
+    .hero-grid { grid-template-columns: 1.45fr .55fr; align-items: center; }
     .actions { flex-direction: row; max-width: none; }
     .actions .btn { width: auto; }
     .actions .btn-gold { min-height: 3.875rem; padding-inline: 2.25rem; font-size: 1.1875rem; }
@@ -267,7 +266,8 @@
   /* ---------- Close ---------- */
   .close { background: var(--foam); text-align: left; }
   .close h2 { font-size: clamp(2.25rem, 9vw, 4.5rem); font-weight: 900; letter-spacing: -0.035em; text-transform: uppercase; line-height: .95; }
-  .close h2 span { color: var(--rinse); }
+  /* Deliberate echo of the logo, where BLESSED is the gold word. */
+  .close h2 .gold { color: var(--gold-ink); }
   .close p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.125rem; max-width: 40ch; }
   .close .actions { margin-top: 1.75rem; }
 
@@ -337,7 +337,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   <div class="wrap hero-grid" id="top">
     <div>
-      <h1><span class="gold">Blessed</span><span class="rest">Mobile Detailing</span></h1>
+      <h1><span class="line">Your car.</span><span class="line accent">Your driveway.</span></h1>
       <p class="pitch"><strong>Professional auto detailing that comes to you</strong> — home, office, anywhere in Ocean County.</p>
       <div class="actions" id="hero-actions">
         <a class="btn btn-gold" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20to%20book%20a%20detail.%0AVehicle%3A%20%0AWhen%3A%20">
@@ -464,7 +464,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   <section class="close sec" aria-labelledby="close-h">
     <div class="wrap">
-      <h2 id="close-h">Your car.<br><span>Your driveway.</span></h2>
+      <h2 id="close-h"><span class="gold">Blessed</span><br>Mobile Detailing</h2>
       <p>Text your vehicle and a time, and we'll take it from there.</p>
       <div class="actions">
         <a class="btn btn-gold" href="sms:+19297958823?&amp;body=Hi%20Blessed%20Mobile%20Detailing!%20I%27d%20like%20to%20book%20a%20detail.%0AVehicle%3A%20%0AWhen%3A%20">
