@@ -1068,14 +1068,15 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         if (i === 1 && s.fill) s.fill.setAttribute('d', d + ' V28 H0 Z');
       }
     }
+    var SPEED = 2; // time multiplier for the whole seam motion
     function frame(now) {
-      var t = now / 1000;
+      var t = now / 1000 * SPEED;
       seams.forEach(function (s) { if (s.on) draw(s, t); });
       raf = live ? requestAnimationFrame(frame) : 0;
     }
 
     // Every seam starts on the same kind of frame the loop draws.
-    var t0 = performance.now() / 1000;
+    var t0 = performance.now() / 1000 * SPEED;
     seams.forEach(function (s) { draw(s, t0); });
     if (still) return;
 
