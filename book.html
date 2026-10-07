@@ -131,25 +131,40 @@
   .lead { margin-top: 1.1rem; font-size: clamp(1.0625rem, 2.4vw, 1.25rem); line-height: 1.45; color: var(--ink-soft); max-width: 38ch; }
   .lead strong { color: var(--ink); font-weight: 700; }
 
-  /* A few suds drifting up through the band: the hero's loose-bubble glass. */
-  .suds { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-  .sud {
-    position: absolute; border-radius: 50%;
-    width: var(--s); height: var(--s); left: var(--x); top: var(--y);
+  /* Bubbles in the band (as index.html): the hero's glass, suspended in a
+     zone right of the heading and stirred by the pointer; on phones a thin
+     strip under the intro. A few loose ones rise and pop on wide screens. */
+  .drifts { position: absolute; top: 5.5rem; right: 0; bottom: .75rem; width: min(30%, 24rem); pointer-events: none; z-index: 0; }
+  .drift {
+    position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform;
     background:
       radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,0) 17%),
       radial-gradient(circle, rgba(255,255,255,.08) 55%, rgba(200,222,238,.55) 80%, rgba(255,255,255,.95) 97%);
     box-shadow: 0 1px 3px rgba(79,125,158,.28);
-    animation: drift var(--d) ease-in-out infinite alternate;
-    animation-delay: var(--dl);
   }
-  @media (max-width: 759.98px) { .suds { display: none; } }
-  @keyframes drift {
-    from { transform: translate(0, 0); }
-    to   { transform: translate(var(--sx), -14px); }
+  @media (max-width: 899px) { .drifts { top: auto; bottom: .2rem; width: 68%; height: 2rem; } }
+  .head.is-offscreen .float { animation-play-state: paused; }
+  .float {
+    position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+    width: var(--size); height: var(--size); left: var(--x); bottom: var(--y);
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,0) 17%),
+      radial-gradient(circle, rgba(255,255,255,.08) 55%, rgba(200,222,238,.55) 80%, rgba(255,255,255,.95) 97%);
+    box-shadow: 0 1px 3px rgba(79,125,158,.28);
+    animation: rise var(--dur) cubic-bezier(.33,.1,.55,1) forwards;
+    opacity: 0;
+  }
+  @keyframes rise {
+    0%   { transform: translate(0, 0) scale(.3); opacity: 0; }
+    8%   { transform: translate(0, -8px) scale(1); opacity: 1; }
+    30%  { transform: translate(var(--sway), calc(var(--rise) * -.32)); }
+    55%  { transform: translate(calc(var(--sway) * -.6), calc(var(--rise) * -.6)); }
+    84%  { transform: translate(var(--sway), calc(var(--rise) * -.9)) scale(1); opacity: 1; }
+    91%  { transform: translate(var(--sway), calc(var(--rise) * -.93)) scale(1.35); opacity: .5; }
+    100% { transform: translate(var(--sway), calc(var(--rise) * -.94)) scale(1.6); opacity: 0; }
   }
 
-  /* Ripple seam (static frame of index.html's). */
+  /* Ripple seam: water sheeting off a panel (moves as on index.html). */
   .ripple { color: var(--water); height: 28px; width: 100%; }
   .ripple path { stroke-opacity: .35; }
   .ripple .ripple-fill { stroke: none; }
@@ -294,13 +309,7 @@
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></symbol>
 </svg>
 <header class="head">
-  <div class="suds" aria-hidden="true">
-    <span class="sud" style="--s:30px;--x:78%;--y:58%;--d:9s;--dl:-2s;--sx:-6px"></span>
-    <span class="sud" style="--s:14px;--x:86%;--y:32%;--d:7s;--dl:-5s;--sx:5px"></span>
-    <span class="sud" style="--s:20px;--x:92%;--y:70%;--d:11s;--dl:-1s;--sx:-4px"></span>
-    <span class="sud" style="--s:10px;--x:71%;--y:80%;--d:8s;--dl:-6s;--sx:4px"></span>
-    <span class="sud" style="--s:24px;--x:63%;--y:40%;--d:12s;--dl:-8s;--sx:6px"></span>
-  </div>
+  <div class="drifts" id="drifts" aria-hidden="true"></div>
   <div class="top">
     <div class="wrap">
       <a class="brand" href="index.html" aria-label="Blessed Mobile Detailing, home">
@@ -580,6 +589,241 @@
         copied(legacyCopy(text));
       }
     });
+  })();
+
+  // Suspended bubbles in the head band (as index.html's rinse band): each
+  // wanders its own slow loop (two sines per axis plus a small bob), kept
+  // inside the zone right of the heading. Phones spread them evenly along
+  // the thin strip under the intro so they don't clump.
+  (function () {
+    var box = document.getElementById('drifts');
+    if (!box) return;
+    var band = box.parentNode;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var phone = window.matchMedia('(max-width: 899px)').matches;
+    var s = 23, TAU = Math.PI * 2;
+    function rnd() { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
+    var bs = [], W = 0, H = 0, BW = 0, BH = 0, BX = 0, BY = 0, OY = 0, visible = true, raf = 0, last = 0;
+    var P = { cx: 0, cy: 0, vx: 0, vy: 0, t: 0, on: false, touch: false };
+    for (var i = 0, n = phone ? 7 : 12; i < n; i++) {
+      var size = phone ? 8 + rnd() * 14 : (rnd() < .25 ? 22 + rnd() * 12 : 8 + rnd() * 14);
+      var el = document.createElement('span');
+      el.className = 'drift';
+      el.style.width = el.style.height = size.toFixed(0) + 'px';
+      box.appendChild(el);
+      bs.push({
+        el: el, size: size, fx: phone ? (i + .15 + rnd() * .7) / n : rnd(), fy: rnd(),
+        ax: phone ? 8 + rnd() * 14 : 12 + rnd() * 26, ay: phone ? 2 + rnd() * 3 : 8 + rnd() * 18,
+        w1: TAU / (16 + rnd() * 16), w2: TAU / (7 + rnd() * 7), w3: TAU / (13 + rnd() * 14),
+        w4: TAU / (6 + rnd() * 6), wb: TAU / (3 + rnd() * 2.5), bob: phone ? 1.5 : 2 + rnd() * 2,
+        p1: rnd() * TAU, p2: rnd() * TAU, p3: rnd() * TAU, p4: rnd() * TAU, pb: rnd() * TAU,
+        ox: 0, oy: 0, vx: 0, vy: 0
+      });
+    }
+    // Home positions, inset so the widest swing still stays in the box.
+    // The zone's page offset (and its drop below the band's top) is cached
+    // here so frames never read layout.
+    function setup() {
+      W = box.clientWidth; H = box.clientHeight; BW = band.clientWidth; BH = band.clientHeight;
+      var r = box.getBoundingClientRect();
+      BX = r.left + window.scrollX; BY = r.top + window.scrollY;
+      OY = r.top - band.getBoundingClientRect().top;
+      bs.forEach(function (b) {
+        var mx = Math.min(b.ax, Math.max(0, (W - b.size) / 2)), my = Math.min(b.ay + b.bob, Math.max(0, (H - b.size) / 2));
+        b.mx = mx; b.ry = Math.max(0, my - b.bob); b.rb = my - b.ry;
+        b.hx = mx + b.fx * Math.max(0, W - b.size - 2 * mx);
+        b.hy = my + b.fy * Math.max(0, H - b.size - 2 * my);
+      });
+    }
+    function place(t, dt) {
+      // The pointer goes stale shortly after it stops reporting (touch lifts).
+      var live = P.on && dt > 0 && performance.now() - P.t < (P.touch ? 120 : 1e9);
+      var R = phone ? 64 : 100, R2 = R * R, px = 0, py = 0;
+      if (live) { px = P.cx + window.scrollX - BX; py = P.cy + window.scrollY - BY; }
+      P.vx *= .9; P.vy *= .9;
+      for (var i = 0; i < bs.length; i++) {
+        var b = bs[i];
+        var x = b.hx + b.mx * (.65 * Math.sin(t * b.w1 + b.p1) + .35 * Math.sin(t * b.w2 + b.p2));
+        var y = b.hy + b.ry * (.65 * Math.sin(t * b.w3 + b.p3) + .35 * Math.sin(t * b.w4 + b.p4)) + b.rb * Math.sin(t * b.wb + b.pb);
+        if (dt > 0) {
+          // Stirring: bubbles near the pointer are nudged away and carried a
+          // little by its motion, then ease back onto their path.
+          if (live) {
+            var c = b.size / 2, dx = x + b.ox + c - px, dy = y + b.oy + c - py, q = dx * dx + dy * dy;
+            if (q < R2) {
+              var dist = Math.sqrt(q) || 1, f = 1 - dist / R;
+              b.vx += (dx / dist * f * f * 3400 + P.vx * f * 2) * dt;
+              b.vy += (dy / dist * f * f * 3400 + P.vy * f * 2) * dt;
+            }
+          }
+          if (b.ox || b.oy || b.vx || b.vy) {
+            b.vx += (-b.ox * 14 - b.vx * 4) * dt;
+            b.vy += (-b.oy * 14 - b.vy * 4) * dt;
+            b.ox += b.vx * dt; b.oy += b.vy * dt;
+            // Never pushed out of the band.
+            var lo = W - BW - x, hi = W - b.size - x;
+            if (b.ox < lo) { b.ox = lo; b.vx = 0; } else if (b.ox > hi) { b.ox = hi; b.vx = 0; }
+            lo = -OY - y; hi = BH - OY - b.size - y;
+            if (b.oy < lo) { b.oy = lo; b.vy = 0; } else if (b.oy > hi) { b.oy = hi; b.vy = 0; }
+            if (Math.abs(b.ox) + Math.abs(b.oy) + Math.abs(b.vx) + Math.abs(b.vy) < .05) b.ox = b.oy = b.vx = b.vy = 0;
+          }
+          x += b.ox; y += b.oy;
+        }
+        b.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+      }
+    }
+    function frame(now) {
+      raf = 0;
+      if (!visible) { last = 0; return; }
+      var dt = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now;
+      place(now / 1000, dt);
+      raf = requestAnimationFrame(frame);
+    }
+    function go() { if (!raf && visible && !still) raf = requestAnimationFrame(frame); }
+    setup(); place(0, 0);
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        setup(); if (still) place(0, 0);
+      }, 150);
+    });
+    if (still) return;
+
+    // Mouse and touch both feed the pointer (in viewport coordinates; the
+    // frame maps it into the zone); touch listeners are passive so
+    // scrolling is never blocked.
+    function feed(cx, cy, touch) {
+      var now = performance.now();
+      if (P.on && now > P.t) {
+        var k = 1000 / Math.max(8, now - P.t);
+        P.vx = P.vx * .5 + (cx - P.cx) * k * .5;
+        P.vy = P.vy * .5 + (cy - P.cy) * k * .5;
+      } else { P.vx = P.vy = 0; }
+      P.cx = cx; P.cy = cy; P.t = now; P.touch = touch; P.on = true;
+    }
+    window.addEventListener('pointermove', function (e) { if (e.pointerType !== 'touch') feed(e.clientX, e.clientY, false); }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', function () { P.on = false; });
+    ['touchstart', 'touchmove'].forEach(function (type) {
+      window.addEventListener(type, function (e) { var p = e.touches[0]; if (p) feed(p.clientX, p.clientY, true); }, { passive: true });
+    });
+    window.addEventListener('touchend', function () { P.on = false; }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible) setup();
+        go();
+      }).observe(band);
+    }
+    go();
+  })();
+
+  // Loose bubbles (as index.html's hero): a few rising out of the bubble
+  // zone, swaying, and popping, then respawning. Wide screens only; on
+  // phones the band is all heading.
+  (function () {
+    var head = document.querySelector('.head');
+    if (!head || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(min-width: 900px)').matches) return;
+    var max = 4;
+    function spawn(delay) {
+      var b = document.createElement('span');
+      var size = 12 + Math.random() * 20;
+      b.className = 'float';
+      b.setAttribute('aria-hidden', 'true');
+      b.style.setProperty('--size', size.toFixed(0) + 'px');
+      b.style.setProperty('--x', (74 + Math.random() * 22).toFixed(1) + '%');
+      b.style.setProperty('--y', .5 + Math.random() * 1.5 + 'rem');
+      b.style.setProperty('--rise', 140 + Math.random() * 120 + 'px');
+      b.style.setProperty('--sway', ((Math.random() - .5) * 50).toFixed(0) + 'px');
+      b.style.setProperty('--dur', (6 + Math.random() * 6).toFixed(1) + 's');
+      b.style.animationDelay = delay.toFixed(2) + 's';
+      b.addEventListener('animationend', function () { b.remove(); spawn(Math.random() * 2.5); });
+      head.appendChild(b);
+    }
+    for (var i = 0; i < max; i++) spawn(1.2 + i * 1.6);
+
+    // Stop everything moving while the band is scrolled out of view.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        head.classList.toggle('is-offscreen', !e[0].isIntersecting);
+      }).observe(head);
+    }
+  })();
+
+  // Ripple seams as moving water: each line rides one shared slow swell plus
+  // its own smaller ripple, so the set rolls and reshapes instead of sliding.
+  // The lower band's fill follows the middle line, so the color edge moves
+  // with the water. One loop for every seam; only seams in view are redrawn.
+  (function () {
+    var seams = [].map.call(document.querySelectorAll('svg.ripple'), function (svg) {
+      return {
+        fill: svg.querySelector('.ripple-fill'),
+        lines: svg.querySelectorAll('path:not(.ripple-fill)'),
+        svg: svg,
+        seed: Math.random() * 6.283,
+        on: false
+      };
+    });
+    if (!seams.length) return;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var BASE = [8, 14, 20], STEP = 20, TAU = Math.PI * 2;
+    var raf = 0, live = 0;
+
+    // Height of line i at x, time t (seconds). Swell and ripple drift in
+    // opposite directions and breathe in strength; peaks stay near ±3 units.
+    function wave(i, x, t, seed) {
+      var lag = i * 0.55 + seed;
+      var swell = Math.sin(x * TAU / 300 - t * 0.55 + lag) * (0.8 + 0.25 * Math.sin(t * 0.31 + x / 520 + seed))
+                + 0.45 * Math.sin(x * TAU / 470 + t * 0.27 + lag * 0.6);
+      var own = Math.sin(x * TAU / (150 + i * 35) + t * (0.7 + i * 0.18) + seed * (i + 1)) * (0.5 + 0.3 * Math.sin(t * 0.43 + i * 2.1));
+      return BASE[i] + 1.9 * swell + 0.9 * own;
+    }
+    // Smooth curve through the sampled points (quadratics via midpoints).
+    function line(i, t, seed) {
+      var px = 0, py = wave(i, 0, t, seed), d = 'M0 ' + py.toFixed(2);
+      for (var x = STEP; x <= 1200; x += STEP) {
+        var y = wave(i, x, t, seed);
+        d += ' Q' + px + ' ' + py.toFixed(2) + ' ' + (px + x) / 2 + ' ' + ((py + y) / 2).toFixed(2);
+        px = x; py = y;
+      }
+      return d + ' L1200 ' + py.toFixed(2);
+    }
+    function draw(s, t) {
+      for (var i = 0; i < s.lines.length && i < 3; i++) {
+        var d = line(i, t, s.seed);
+        s.lines[i].setAttribute('d', d);
+        if (i === 1 && s.fill) s.fill.setAttribute('d', d + ' V28 H0 Z');
+      }
+    }
+    var SPEED = 2; // time multiplier for the whole seam motion
+    function frame(now) {
+      var t = now / 1000 * SPEED;
+      seams.forEach(function (s) { if (s.on) draw(s, t); });
+      raf = live ? requestAnimationFrame(frame) : 0;
+    }
+
+    // Every seam starts on the same kind of frame the loop draws.
+    var t0 = performance.now() / 1000 * SPEED;
+    seams.forEach(function (s) { draw(s, t0); });
+    if (still) return;
+
+    if (!('IntersectionObserver' in window)) {
+      seams.forEach(function (s) { s.on = true; });
+      live = seams.length;
+      raf = requestAnimationFrame(frame);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var s = seams.filter(function (m) { return m.svg === e.target; })[0];
+        if (s.on !== e.isIntersecting) { s.on = e.isIntersecting; live += s.on ? 1 : -1; }
+      });
+      if (live && !raf) raf = requestAnimationFrame(frame);
+    });
+    seams.forEach(function (s) { io.observe(s.svg); });
   })();
 </script>
 </body>
