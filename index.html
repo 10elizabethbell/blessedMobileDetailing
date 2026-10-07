@@ -327,6 +327,14 @@
   .ba figcaption { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1rem; }
   .ba-name { font-weight: 800; font-size: 1.125rem; text-align: center; transition: opacity .2s var(--ease-out); }
   .ba-tag { font-size: .8125rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); padding: .3rem .75rem; border-radius: 999px; background: var(--mist); }
+  /* Phones: each service carries its own bubble under its row, lined up with
+     the text column. Vertical swipes over it still scroll the page. */
+  .ba-inline { width: min(100% - 2.3rem, 20rem); margin: -.5rem 0 1.75rem 2.3rem; }
+  .menu li.lead .ba-inline { width: min(100% - 2.6rem, 20rem); margin-left: 2.6rem; margin-top: -.75rem; }
+  .ba-inline .ba-bubble { touch-action: pan-y; }
+  .ba-inline figcaption { margin-top: .75rem; }
+  @media (max-width: 899.98px) { #ba { display: none; } }
+  @media (min-width: 900px) { .ba-inline { display: none; } }
 
   @media (min-width: 900px) {
     .services .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4rem; align-items: start; }
@@ -947,13 +955,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
   })();
 
-  // Before/after viewer: hovering or focusing a service shows its photos;
-  // the divider wipes across like a squeegee pass and can be dragged.
+  // Before/after viewers. Desktop: one bubble beside the list; hovering or
+  // focusing a service shows its photos and the divider wipes across like a
+  // squeegee pass. Phones: a bubble under each service, divider at center,
+  // photos assigned only as it nears the screen. Dividers drag or take arrows.
   // To add photos, fill in SHOTS (data URIs or file paths).
   (function () {
     var fig = document.getElementById('ba');
-    if (!fig || !window.matchMedia('(min-width: 900px)').matches) return;
-    var ext = document.querySelector('.bubble-ext img'), int = document.querySelector('.bubble-int img');
+    if (!fig) return;
     function photo(id) { var el = document.getElementById(id); return el ? 'data:image/webp;base64,' + el.textContent.trim() : null; }
     var SHOTS = {
       full:     { name: 'Full Detail',     before: photo('ba-full-before'), after: photo('ba-full-after') },
@@ -961,66 +970,127 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       exterior: { name: 'Exterior Detail', before: photo('ba-exterior-before'), after: photo('ba-exterior-after') },
       express:  { name: 'Express Refresh', before: photo('ba-express-before'), after: photo('ba-express-after') }
     };
-    var bubble = fig.querySelector('.ba-bubble'), handle = fig.querySelector('.ba-handle');
-    var beforeL = fig.querySelector('.ba-before'), afterL = fig.querySelector('.ba-after');
-    var nameEl = fig.querySelector('.ba-name');
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var pos = 50, anim = 0, current = '';
+    // Phone copies are cloned from the figure before the desktop one is filled.
+    var tpl = fig.cloneNode(true);
 
-    function setPos(v) {
-      pos = Math.max(0, Math.min(100, v));
-      bubble.style.setProperty('--pos', pos + '%');
-      handle.setAttribute('aria-valuenow', Math.round(pos));
-    }
-    function fill(layer, src, label) {
-      var img = layer.querySelector('img');
-      layer.classList.toggle('is-empty', !src);
-      if (src) { img.src = src; img.alt = label; } else { img.removeAttribute('src'); img.alt = ''; }
-    }
-    function wipe() {
-      cancelAnimationFrame(anim);
-      if (still) return setPos(50);
-      var t0 = performance.now();
-      (function step(now) {
-        var e = Math.min((now - t0) / 1100, 1), k = 1 - Math.pow(1 - e, 3);
-        setPos(96 - 46 * k);
-        if (e < 1) anim = requestAnimationFrame(step);
-      })(t0);
-    }
-    function show(key) {
-      if (key === current || !SHOTS[key]) return;
-      current = key;
-      var s = SHOTS[key];
-      fill(beforeL, s.before, s.name + ', before');
-      fill(afterL, s.after, s.name + ', after');
-      var blank = !s.before && !s.after;
-      bubble.classList.toggle('is-blank', blank);
-      afterL.querySelector('.ba-empty').textContent = blank ? 'Photos coming soon' : 'After photo coming soon';
-      nameEl.textContent = s.name;
-      wipe();
+    // Wires one figure and returns its show(key, sweep). With `lock`, a touch
+    // drag only takes the divider once it moves sideways; vertical ones scroll.
+    function viewer(fig, lock) {
+      var bubble = fig.querySelector('.ba-bubble'), handle = fig.querySelector('.ba-handle');
+      var beforeL = fig.querySelector('.ba-before'), afterL = fig.querySelector('.ba-after');
+      var nameEl = fig.querySelector('.ba-name');
+      var pos = 50, anim = 0, current = '', drag = null;
+
+      function setPos(v) {
+        pos = Math.max(0, Math.min(100, v));
+        bubble.style.setProperty('--pos', pos + '%');
+        handle.setAttribute('aria-valuenow', Math.round(pos));
+      }
+      function fill(layer, src, label) {
+        var img = layer.querySelector('img');
+        layer.classList.toggle('is-empty', !src);
+        if (src) { img.src = src; img.alt = label; } else { img.removeAttribute('src'); img.alt = ''; }
+      }
+      function wipe() {
+        cancelAnimationFrame(anim);
+        if (still) return setPos(50);
+        var t0 = performance.now();
+        (function step(now) {
+          var e = Math.min((now - t0) / 1100, 1), k = 1 - Math.pow(1 - e, 3);
+          setPos(96 - 46 * k);
+          if (e < 1) anim = requestAnimationFrame(step);
+        })(t0);
+      }
+      function show(key, sweep) {
+        if (key === current || !SHOTS[key]) return;
+        current = key;
+        var s = SHOTS[key];
+        fill(beforeL, s.before, s.name + ', before');
+        fill(afterL, s.after, s.name + ', after');
+        var none = !s.before && !s.after;
+        bubble.classList.toggle('is-blank', none);
+        afterL.querySelector('.ba-empty').textContent = none ? 'Photos coming soon' : 'After photo coming soon';
+        if (nameEl) nameEl.textContent = s.name;
+        if (sweep) wipe(); else setPos(50);
+      }
+
+      function fromEvent(e) {
+        var b = bubble.getBoundingClientRect();
+        cancelAnimationFrame(anim);
+        setPos((e.clientX - b.left) / b.width * 100);
+      }
+      bubble.addEventListener('pointerdown', function (e) {
+        e.preventDefault();
+        var live = !lock || e.pointerType === 'mouse';
+        drag = { id: e.pointerId, x: e.clientX, y: e.clientY, live: live };
+        if (live) { bubble.setPointerCapture(e.pointerId); fromEvent(e); }
+      });
+      bubble.addEventListener('pointermove', function (e) {
+        if (!drag || drag.id !== e.pointerId) return;
+        if (!drag.live) {
+          var dx = Math.abs(e.clientX - drag.x), dy = Math.abs(e.clientY - drag.y);
+          if (dx < 8 && dy < 8) return;
+          if (dy >= dx) { drag = null; return; }
+          drag.live = true;
+          bubble.setPointerCapture(e.pointerId);
+        }
+        fromEvent(e);
+      });
+      // A tap that never moved still sets the divider where it landed.
+      bubble.addEventListener('pointerup', function (e) {
+        if (drag && drag.id === e.pointerId && !drag.live) fromEvent(e);
+        drag = null;
+      });
+      bubble.addEventListener('pointercancel', function () { drag = null; });
+      handle.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowLeft' ? -5 : e.key === 'ArrowRight' ? 5 : 0;
+        if (d) { e.preventDefault(); cancelAnimationFrame(anim); setPos(pos + d); }
+      });
+      return show;
     }
 
+    // Phones: a bubble after each row's link, never inside it, so touching
+    // the photo can't open a text. CSS hides these from 900px up.
+    var near = 'IntersectionObserver' in window && new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        near.unobserve(en.target);
+        en.target.baShow(en.target.dataset.shot);
+      });
+    }, { rootMargin: '600px 0px' });
     document.querySelectorAll('.menu .row[data-shot]').forEach(function (row) {
-      row.addEventListener('mouseenter', function () { show(row.dataset.shot); });
-      row.addEventListener('focus', function () { show(row.dataset.shot); });
+      var key = row.dataset.shot;
+      if (!SHOTS[key]) return;
+      var f = tpl.cloneNode(true), cap = f.querySelector('.ba-name');
+      f.removeAttribute('id');
+      f.hidden = false;
+      f.classList.add('ba-inline');
+      f.dataset.shot = key;
+      if (cap) cap.remove();
+      f.querySelector('.ba-handle').setAttribute('aria-label', 'Compare ' + SHOTS[key].name + ' before and after');
+      row.parentNode.insertBefore(f, row.nextSibling);
+      f.baShow = viewer(f, true);
+      if (near) near.observe(f); else f.baShow(key);
     });
 
-    function fromEvent(e) {
-      var b = bubble.getBoundingClientRect();
-      cancelAnimationFrame(anim);
-      setPos((e.clientX - b.left) / b.width * 100);
+    // Desktop: built once the viewport is wide, at load or after a resize.
+    var wide = window.matchMedia('(min-width: 900px)'), built = false;
+    function desktop() {
+      if (built || !wide.matches) return;
+      built = true;
+      var show = viewer(fig, false);
+      document.querySelectorAll('.menu .row[data-shot]').forEach(function (row) {
+        row.addEventListener('mouseenter', function () { show(row.dataset.shot, true); });
+        row.addEventListener('focus', function () { show(row.dataset.shot, true); });
+      });
+      fig.hidden = false;
+      // Open on the first service that has both photos.
+      var first = Object.keys(SHOTS).filter(function (k) { return SHOTS[k].before && SHOTS[k].after; })[0];
+      show(first || 'full', true);
     }
-    bubble.addEventListener('pointerdown', function (e) { e.preventDefault(); bubble.setPointerCapture(e.pointerId); fromEvent(e); });
-    bubble.addEventListener('pointermove', function (e) { if (bubble.hasPointerCapture(e.pointerId)) fromEvent(e); });
-    handle.addEventListener('keydown', function (e) {
-      var d = e.key === 'ArrowLeft' ? -5 : e.key === 'ArrowRight' ? 5 : 0;
-      if (d) { e.preventDefault(); cancelAnimationFrame(anim); setPos(pos + d); }
-    });
-
-    fig.hidden = false;
-    // Open on the first service that has both photos.
-    var first = Object.keys(SHOTS).filter(function (k) { return SHOTS[k].before && SHOTS[k].after; })[0];
-    show(first || 'full');
+    desktop();
+    if (wide.addEventListener) wide.addEventListener('change', desktop);
   })();
 
   // Ripple seams as moving water: each line rides one shared slow swell plus

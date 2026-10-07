@@ -217,6 +217,9 @@ Big, round, and physical: they rise on hover and invert on press.
 ### Service Menu (signature)
 A ruled list, not a card grid. Each row: a solid gold dot (1.05rem; 1.35rem on the lead row), a title-weight service name, and a soft-ink description. The whole row is one link (an SMS pre-filled with that service), cued only by a 2.75rem circular arrow at the row's end: hairline ring and water-blue arrow at rest; on hover the circle fills water blue, the arrow turns white and nudges 3px, and the title turns rinse; on press it inverts to ink with gold-bright. Never repeat a text CTA label on every row; the section intro carries "tap a detail" once, and a visually hidden "text for a quote" keeps each link's accessible name complete. The lead row (the flagship service) gets more padding and a larger title.
 
+### Before/After Viewer
+Real before/after pairs in a glass bubble (glass wall and bubble contact shadows) split by a white divider with a round frosted handle; the divider drags by pointer or moves with arrow keys, and BEFORE / AFTER pill tags sit under it. From 900px one 24rem bubble sits under the services intro; hovering or focusing a row swaps in that service's pair and the divider wipes across like a squeegee pass (held at center under reduced motion), with the service name between the tags. Below 900px each row instead carries its own bubble (up to 20rem, aligned with the row's text column) placed after the row's link so touching it never opens a text; the divider rests at center, only sideways drags move it so vertical swipes still scroll, and photos load as each bubble nears the screen.
+
 ### Step Numerals
 Giant 900-weight rinse-blue numerals beside (phone) or above (desktop) a title and one sentence. They replace icons as the step marker.
 
