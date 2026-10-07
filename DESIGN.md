@@ -66,11 +66,13 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
+    border: "1.5px solid #b7c8d4"
     padding: "0.9rem 1.5rem"
     height: "3.5rem"
   button-primary-hover:
     backgroundColor: "{colors.gold-bright}"
     textColor: "{colors.ink}"
+    borderColor: "{colors.ink-soft}"
   button-primary-active:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.gold-bright}"
@@ -78,11 +80,13 @@ components:
     backgroundColor: "#ffffff"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
+    border: "1.5px solid #b7c8d4"
     padding: "0.9rem 1.5rem"
     height: "3.5rem"
   button-secondary-hover:
     backgroundColor: "{colors.mist}"
     textColor: "{colors.ink}"
+    borderColor: "{colors.ink-soft}"
   button-secondary-active:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.gold-bright}"
@@ -208,7 +212,7 @@ Only two silhouettes: the pill (999px) for buttons and the circle for the logo, 
 ### Buttons
 Big, round, and physical: they rise on hover and invert on press.
 - **Shape:** full pill (999px), minimum 3.5rem tall, 0.9rem x 1.5rem padding, 0.6rem gap between leading stroke icon and label.
-- **Primary (gold):** gold fill, ink text, 800 weight, gold lift shadow. Hover goes gold-bright and rises 1px. Used for "Tap to Text & Book" only.
+- **Primary (gold):** gold fill, ink text, 800 weight, gold lift shadow, and the same 1.5px cool-grey outline (#b7c8d4) as the secondary so the two pills read as a pair. Hover goes gold-bright, darkens the outline to ink-soft, and rises 1px. Used for "Tap to Text & Book" only.
 - **Secondary (line):** white fill, ink text at 700, 1.5px cool-grey border (#b7c8d4). Hover fills mist and darkens the border to ink-soft. Used for Call; deliberately quieter than the primary.
 - **Press (all):** ink fill, gold-bright text, ink border, no shadow, no transform.
 - **Focus:** 3px gold outline, 3px offset, 6px radius.
