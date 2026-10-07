@@ -137,7 +137,8 @@
     box-shadow: 0 0 0 1px rgba(255,255,255,.75), 0 12px 20px -14px rgba(15,74,114,.4);
     animation: bob 8s ease-in-out infinite alternate;
   }
-  .bubble img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .bubble { -webkit-user-select: none; user-select: none; }
+  .bubble img { display: block; width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; }
   /* Glass wall: a bright hairline with faint thin-film color just inside it. */
   .bubble::before {
     content: ""; position: absolute; inset: 0; z-index: 1; border-radius: 50%; pointer-events: none;
@@ -284,6 +285,7 @@
   .ba-bubble {
     position: relative; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
     background: var(--mist); touch-action: none; cursor: ew-resize;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
     box-shadow: 0 0 0 1px rgba(255,255,255,.75), 0 14px 26px -16px rgba(15,74,114,.45);
     --pos: 50%;
   }
@@ -297,7 +299,7 @@
       inset 0 -20px 34px -12px rgba(21,90,136,.3);
   }
   .ba-layer { position: absolute; inset: 0; display: grid; place-items: center; }
-  .ba-layer img { width: 100%; height: 100%; object-fit: cover; transition: opacity .35s var(--ease-out); }
+  .ba-layer img { -webkit-user-drag: none; pointer-events: none; width: 100%; height: 100%; object-fit: cover; transition: opacity .35s var(--ease-out); }
   .ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
   /* With no photo yet, the slot says so plainly instead of faking one. */
   .ba-empty {
@@ -490,8 +492,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <p>Every job is done at your place. Tap a detail to text us about it, and we'll send back a quote.</p>
         <figure class="ba" id="ba" hidden>
           <div class="ba-bubble">
-            <div class="ba-layer ba-after"><img alt=""><span class="ba-empty">After photo coming soon</span></div>
-            <div class="ba-layer ba-before"><img alt=""><span class="ba-empty">Before photo coming soon</span></div>
+            <div class="ba-layer ba-after"><img alt="" draggable="false"><span class="ba-empty">After photo coming soon</span></div>
+            <div class="ba-layer ba-before"><img alt="" draggable="false"><span class="ba-empty">Before photo coming soon</span></div>
             <div class="ba-handle" role="slider" tabindex="0" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span></span></div>
           </div>
           <figcaption>
@@ -1012,7 +1014,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       cancelAnimationFrame(anim);
       setPos((e.clientX - b.left) / b.width * 100);
     }
-    bubble.addEventListener('pointerdown', function (e) { bubble.setPointerCapture(e.pointerId); fromEvent(e); });
+    bubble.addEventListener('pointerdown', function (e) { e.preventDefault(); bubble.setPointerCapture(e.pointerId); fromEvent(e); });
     bubble.addEventListener('pointermove', function (e) { if (bubble.hasPointerCapture(e.pointerId)) fromEvent(e); });
     handle.addEventListener('keydown', function (e) {
       var d = e.key === 'ArrowLeft' ? -5 : e.key === 'ArrowRight' ? 5 : 0;
