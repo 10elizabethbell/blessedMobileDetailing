@@ -105,7 +105,7 @@ components:
 
 **Creative North Star: "The Snow-Foam Pass"**
 
-The page is the moment a car starts getting clean: a bright, living bank of suds along the bottom of a cool mist-blue hero, the client's own finished work held up in soap bubbles riding that foam, beads of water on a rinse-blue band, and gold trim held back for the things that matter. The ground is cool foam white and mist, never dark; depth comes from foam, glass, and water. Photography appears only as real work framed by the world's own material (a soap bubble), never as a full-bleed background or a cornered card.
+The page is the moment a car starts getting clean: a bright, living bank of suds along the bottom of a cool mist-blue hero, the client's own finished work held up in soap bubbles riding that foam, bubbles suspended in a rinse-blue band, and gold trim held back for the things that matter. The ground is cool foam white and mist, never dark; depth comes from foam, glass, and water. Photography appears only as real work framed by the world's own material (a soap bubble), never as a full-bleed background or a cornered card.
 
 Density is low and the voice is loud. Every heading is heavy uppercase system sans, tightly tracked, set large enough to read from arm's length on a phone. Content runs as ruled lists and big numerals rather than boxed cards, and sections hand off through tinted bands joined by ripple seams: foam to mist to rinse and back to foam. The one interaction that matters (text to book) is always a gold pill, and on phones it is one thumb away in a sticky bar that steps aside while the hero's own buttons are visible.
 
@@ -116,7 +116,7 @@ Gold is the brand's thread from the black-and-gold logo, but it is rationed: in 
 - Heavy uppercase system sans (800-900) for every heading; regular weight body in ink-soft.
 - Gold rationed to the primary action, solid dot marks, focus/selection, the logo ring, and the word BLESSED in the closing heading.
 - Ruled lists and giant numerals instead of cards.
-- World materials, all bubble-and-water: a live canvas foam bank, glass photo bubbles, loose rising bubbles, water beading, ripple seams.
+- World materials, all bubble-and-water: a live canvas foam bank, glass photo bubbles, loose rising bubbles, suspended bubbles, ripple seams.
 - Round forms only: pills and circles; no rectangles with corners.
 
 ## Colors
@@ -183,7 +183,7 @@ Lists are ruled, not boxed: rows of 1.5rem vertical padding (2rem for the lead r
 
 ## Elevation & Depth
 
-Mostly flat with tonal banding. Depth comes from the world's materials (the foam bank, glass bubbles, beading) and from soft, tinted shadows under the gold and the bubbles; no surface is lifted as a card. Layering inside the hero is fixed: photo bubbles and loose bubbles at the back (z 0), the foam canvas over them (z 1), the copy and freed bubbles on top (z 2).
+Mostly flat with tonal banding. Depth comes from the world's materials (the foam bank, glass bubbles) and from soft, tinted shadows under the gold and the bubbles; no surface is lifted as a card. Layering inside the hero is fixed: photo bubbles and loose bubbles at the back (z 0), the foam canvas over them (z 1), the copy and freed bubbles on top (z 2).
 
 ### Shadow Vocabulary
 - **Gold lift** (`box-shadow: 0 1px 0 rgba(255,255,255,.55) inset, 0 6px 18px -6px rgba(133,96,15,.55)`): primary button at rest; deepens to `0 10px 24px -8px` on hover with a 1px rise.
@@ -191,7 +191,7 @@ Mostly flat with tonal banding. Depth comes from the world's materials (the foam
 - **Bubble contact** (`box-shadow: 0 0 0 1px rgba(255,255,255,.75), 0 12px 20px -14px rgba(15,74,114,.4)`): a white hairline rim and a faint navy contact shadow under each photo bubble.
 - **Glass wall** (stacked insets: 1.5px white at .95, then 3px cyan, 4.5px magenta, 6px gold film at .38/.22/.14, plus `inset 0 -20px 34px -12px rgba(21,90,136,.32)`): the soap-film wall drawn over each photo.
 - **Sticky veil** (`box-shadow: 0 -8px 24px -12px rgba(15,74,114,.25)` with `backdrop-filter: saturate(1.4) blur(12px)`): the mobile booking bar.
-- **Bead** (inset dark bottom, inset light top, 2-3px outer drop in deep rinse): water drops on the rinse band.
+- **Suspended bubble** (`0 1px 3px rgba(3,28,48,.35)`): the loose-bubble shadow, deepened to read on rinse blue.
 - **Foam surface** (canvas shadow rgba(79,125,158,.4), 14px blur, -2px offset): the soft upward shadow along the foam bank's crest.
 
 ### Named Rules
@@ -201,7 +201,7 @@ Mostly flat with tonal banding. Depth comes from the world's materials (the foam
 
 ## Shapes
 
-Only two silhouettes: the pill (999px) for buttons and the circle for the logo, photo bubbles, foam and loose bubbles, dot marks, town dots, the sticky call button, and water beads (slightly flattened, 50% 50% 48% 48% / 46% 46% 54% 54%). Everything else is unbounded: sections are full-bleed bands, lists are ruled rows, and there are no cornered cards. Photography is only ever clipped to a circle. Borders are hairlines (1px waterline) or deliberate rules (2px ink top rule on the service list, 1.5px underline on quote links). Section joins are ripple seams: three stacked wave strokes, 1.5px non-scaling, 28px tall, over the upper band's color with the lower band filled up to the middle line, so the color edge is the water line. In motion they undulate like a slow water surface (a shared rolling swell plus a smaller ripple per line, each with its own phase and speed, peaks about ±3 units), redrawn only while on screen; reduced motion and no-JS get one still wavy frame.
+Only two silhouettes: the pill (999px) for buttons and the circle for the logo, photo bubbles, foam and loose bubbles, dot marks, town dots, the sticky call button, and suspended bubbles. Everything else is unbounded: sections are full-bleed bands, lists are ruled rows, and there are no cornered cards. Photography is only ever clipped to a circle. Borders are hairlines (1px waterline) or deliberate rules (2px ink top rule on the service list, 1.5px underline on quote links). Section joins are ripple seams: three stacked wave strokes, 1.5px non-scaling, 28px tall, over the upper band's color with the lower band filled up to the middle line, so the color edge is the water line. In motion they undulate like a slow water surface (a shared rolling swell plus a smaller ripple per line, each with its own phase and speed, peaks about ±3 units), redrawn only while on screen; reduced motion and no-JS get one still wavy frame.
 
 ## Components
 
@@ -243,8 +243,8 @@ Interactive: a mouse or finger pushes and drags nearby suds, which spring back w
 ### Loose Bubbles
 Small glass bubbles (10-38px) rise steadily out of the foam bank (6 on phones, 11 on larger screens), swaying side to side over 6-12s and popping with a brief swell at the top. Each is a near-clear disc with a bright top-left highlight and a whitening rim. Off under reduced motion; paused off screen.
 
-### Water Beading (signature)
-About 70 flattened, rinse-tinted domes clustered in the rinse band's top-right, masked to fade out; on phones they collapse to a thin strip along the top edge.
+### Suspended Bubbles (signature)
+The loose-bubble glass recipe (8-34px; 15 on larger screens, 7 on phones) held in the rinse band's top-right zone, beside the heading and town list; on phones a thin strip in the band's top padding. Each wanders its own slow, organic loop (two sines per axis plus a small bob, 6-32s periods) and never leaves the zone, driven by one rAF loop of transform-only updates. A mouse or finger nudges nearby bubbles away and carries them a little along its motion; they spring back onto their path. Paused off screen; static under reduced motion.
 
 ## Do's and Don'ts
 
@@ -265,5 +265,5 @@ About 70 flattened, rinse-tinted domes clustered in the rinse band's top-right, 
 - **Don't** put photos in cornered frames or cards; photography is clipped to a bubble or not shown.
 - **Don't** use gold for large fields, step numbers, headline accents, links, or secondary buttons.
 - **Don't** set gold-bright or gold as text on foam or mist; use gold-ink.
-- **Don't** add ornament outside the world's materials (foam, glass bubbles, water beading, ripple seams).
+- **Don't** add ornament outside the world's materials (foam, glass bubbles, ripple seams).
 - **Don't** introduce cornered cards, square buttons, or hard offset shadows.
