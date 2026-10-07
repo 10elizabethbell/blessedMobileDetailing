@@ -332,6 +332,13 @@
             <p class="err" id="e-name" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
           </div>
 
+          <div class="q">
+            <label class="lab" for="f-contact">Phone or email</label>
+            <span class="hint" id="h-contact">So we can reach you if the text doesn't come through</span>
+            <input class="in" id="f-contact" name="contact" type="text" autocomplete="on" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" required aria-describedby="h-contact e-contact">
+            <p class="err" id="e-contact" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+
           <fieldset class="q" id="g-service" aria-describedby="e-service">
             <legend>Which detail?</legend>
             <div class="pills services-pills">
@@ -454,6 +461,18 @@
     if (pre) pre.checked = true;
 
     function val(id) { return $(id).value.trim(); }
+
+    // Phone or email: an @ means email, otherwise a 10-digit US number
+    // (an optional leading 1 and any punctuation are fine).
+    function contact() {
+      var v = val('f-contact');
+      if (!v) return { ok: false, empty: true };
+      if (v.indexOf('@') > -1) return { ok: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v), text: v, email: true };
+      var d = v.replace(/\D/g, '');
+      if (d.length === 11 && d[0] === '1') d = d.slice(1);
+      if (d.length !== 10 || /[^\d\s()+.\-]/.test(v)) return { ok: false, text: v };
+      return { ok: true, text: '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6) };
+    }
     function picked(name) { var r = form.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
 
     function setErr(key, msg) {
@@ -472,6 +491,10 @@
         if (bad && !first) first = target || $('f-' + key);
       }
       rule('name', !val('f-name'), 'Add your name so we know who we\'re texting.');
+      var c = contact();
+      rule('contact', !c.ok, c.empty ? 'Add a phone number or email so we can reach you.'
+        : c.email ? 'That email doesn\'t look complete, like name@example.com.'
+        : 'Enter a 10-digit phone number, like (732) 555-0142, or an email.');
       rule('service', !picked('service'), 'Pick a detail. Not sure? Choose Full Detail and ask in your text.',
         form.querySelector('input[name="service"]'));
       rule('vehicle', !val('f-vehicle'), 'Add the year, make, and model, like 2019 Honda Civic.');
@@ -491,6 +514,7 @@
       var lines = [
         'Hi Blessed Mobile Detailing! I\'d like to book a detail.',
         'Name: ' + val('f-name'),
+        'Contact: ' + contact().text,
         'Service: ' + picked('service'),
         'Vehicle: ' + val('f-vehicle'),
         'Where: ' + val('f-where')
