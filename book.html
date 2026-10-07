@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a Detail | Blessed Mobile Detailing</title>
+<meta name="description" content="Book a mobile detail in Ocean County, NJ. Answer a few questions and we'll turn them into a text to (929) 795-8823.">
+<meta name="theme-color" content="#f6f9fb">
+<link rel="icon" id="favicon" href="data:,">
+<style>
+  :root {
+    --foam: #fbfcfd;
+    --mist: #eef4f8;
+    --rinse: #155a88;
+    --rinse-deep: #0f4a72;
+    --water: #1d6fa5;
+    --gold: #c8962e;
+    --gold-bright: #e2b54a;
+    --gold-ink: #85600f;
+    --ink: #14171a;
+    --ink-soft: #3d4a55;
+    --line: #d3e0e9;
+    --edge: #b7c8d4;
+    --alert: #a8231b;
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --gutter: clamp(1rem, 5vw, 3rem);
+    --max: 72rem;
+    /* Focus: ink ring on a foam gap, gold-bright halo outside. Gold alone
+       fails 3:1 on these grounds; the ink ring carries the contrast. */
+    --focus: 0 0 0 2px var(--foam), 0 0 0 4.5px var(--ink), 0 0 0 7.5px var(--gold-bright);
+    /* The logo, embedded once: header, footer and favicon all read it. */
+    --logo: url("data:image/webp;base64,UklGRtgqAABXRUJQVlA4IMwqAADwmwCdASpAAUABPmEsk0akIqGhJ/NKqIAMCU3fjYMNOGmtSAcs3rp5b8yfmf7n6V1f/yn91/aHxlfvur2Lv24ekfan/qv1l9z36B/7fuEfqx+yHrleqv++f8b8gPgT/V/9X+6HvN/9n9u/fF/gfUa/un/B6230GfLs9oX9v/3k9qH//6wH6b/qn4+eDv+Q/u/44+ov439A/gf7x+1XM+7C8zv5R9/v13+J/cr8xflv/r/4jyR+PP+d6iP4r/NP79+Y39y9UXco23/53qHexP1X/Uf4f8sfjU/A/5Xo5/GeoB+r//D8trwrvSvYE/oH+H/8P+U9if/1/2P5ke5L9I/zH/p/yfwHfzP+z/9b+//k9873ss/eX2hf3HMmK5AYuE0hcVyAxcJpC4rh6+j9UBi4TSFxXICxFOhaDrLOAlPktA1mnu9xqRtUirnFwmkLisulXb7w7XvWJIdyNpoFqaK16xG9FY5bMgbz5knjvHxPejuqL6ouK5AYgAfPN0kh1RNerfw3I+ztev968WGWVx7T30Ke23OoO73J0AfatzIxDbPADhWte3KPNDsnQ9JWUw7w8J6ydTTh5zkDwSjoEPeSKF48FQlCu7dO7PCtUdhi7LVGZqo/fdJMiZ2btrczfxiF2p8//bvckOsbw+Smv/MsRDsMw5+2DJzNtU/dBwy7EPoTBsk/NP3LE6zOdxgJuGgrsJzs/N83G7LpwRg0MAKR2OyMb/4OO7iQk1R2V2OxNwp8VmubpgPkFDx5mlg5xUSqanAj0L19xOZfDyCyvOqQb888AV/wP3WicRMCHApAZMHFl5a/Nrvv3fRWNSld97kD4t62xfMBV1pmuIYaIjkKCkW5hp2jD/vC6uKB8RW0FnduV+t8N740x4bKjOzehfYnJJfU+vKvYCE8DzMvYp30wdmd50FK47I3rZHOAz1XEVrShQrJF37yVnD4LM3uTxYSFBnb6tNuhaadDifFv2lEvtlm6rOVJnQTr1VRSmu/YfjufXsIiIDCwn29x60DSuyT2Ty2fkFWrhSGttuy0roiNHJE6yiHn+LRQ5HDil9Wmgeh/v08oTBlFQuHqhDq4WeNmZnNmg7JLIPHnBbO5zovTx4SfuNJys88IO/TyvKgnUfwY+mdNrIOd5BgTA4rU54ETZjX1JWAY+dbIjUEtJtUHJyEGi1c1Z4q0autM+HAwLfE4R+JU+NSRYgQPNRIMUxK6udzRdKycM8TnAHMyhlKbXni6hNjLj/qe03bvu48TouyJ6KthL6E9rTvUX1lSyQTuS2yskd5xi+cLPXRcJvVbz70CsYJCbm4/9ERYU+9fQkoJ4SUELjxsCypGSFW19LCwO44sVlEmeeiV+yncYB2wHDsukOYjLeeUBUpmGmOIPUa5JrDQN9f7TSe6r5FMNmYHArfah0GJpKCCmtL9BtoXBcOWHqGxb6/aUpXuZZm5luTwr2/1c0NA+zt3zmQN10u4rzcW/AmzmxBK70rOkNcKIvUSBeseGW0rEx9A0NSedjt85gzyVnOaoaUZvVoJWzVUydp8yzV0q/JBb1Uhc5b2CdKRgYLBfFEvR/7KiImKd9JAExOjMOWGcXCaQuLjjexsBHB9ukiRRkxkjpErGbqdfn6OAU01m2iajhDkvbpmexXIDIUrZ784TSFxXIDFwmkLiuQGLggAAD+9uLAAAB0/9E4f99/kxF83hAMQ72g3p0AAI9rK60im/wYB7VWlysV1oklXLzD0mKd0xC/aGlej4HvDlhAwt9btQIP+n73jIj5twTwlTr0EpJ/Xb+n+996KFdsnmHLeqrRYWbLXUboNcZZJIihKYmcOqWgHzpEaGKhVBah/wtWGJV4Tv4I/FrPLhhWn8mZUGqSsNrhUIpoJ2ngwntySv1eNSF+V4g0DuW0YDzR+7Qpy3Cz2s6VLwa3Bzjv2bWPP38Fe0fxXYMfXJnblmgY/dqAG/rtJIPwwZ3W/aiGl2ADPiygnzpcndB9Ezw1cqkL6ADTU5KE64w4zL5MIaC/Zmqxvg8oZUbfgYG6zymE/VEGDeJO2K+7KGbz3StCUuRMuNav+87MFiQeKSkbg8CTr1dfEPOEJBDVD9IECWALZm08YPoFjHRKcJoUsO3ox4Qrbrvdn/Scvao7CTVZm8ojZLe3tSoNdbwbskSN/Vqi05a5Z1BV0DJn+/2B3XQ/KU+wNcBlgTTFFahwyuaVAhKw516OXNzTnoty4ofqxuCcjCX5xqBqgqx+olURWXf1TZULnINf5NIgUidurDoIHdiq+aH78f2507r9TABU7968TVv+5rOaNuPewPv8YBgKbN7IIlJ3Z1HafhqsV7YL/d8pDdpT4qVin1cAPZERUgocDz2CyASaWDerqzyfk19BDgTDYKmZL2Q92cxfR8oPdRBvdNzkKjJYgTR0ThumpKpbrK6jIFfBGcnbhJY9HyXf1tpWMYnCujfhA7MQ7Gqo9BWMKfb7V8obPOTxLdho/VVA+f5FCSIy6czv8KdoYy8/FH0nDjOQJrQxNgkXJzh445eCROM4dsE6uuf6d+L/VVadhvOhxsO079C59PEg4AIMAlVtcsfwT5ZsvEnNYwhW8ARSVwDqh2Tu/kfAYTn6pNVwdhrdVhdjn6d1kiM6vEmIzFoK2Gxo2jn7PnGQasfDEA+82n0lgCRJSN3ewBnLAJzq/dEb7ajMBD3HFNUEiWMktWBAkPKuRSKTLnRmMotUWrNS+mWKT9BUWdwQr6v+WQtR/Sn6x8AFXXZpn1SPz8jbeJanfUsW40BQcSvv84CBRd1OFpzxnH/pQqz1jyVgEAq+t50d1TbHgb00asS3EB1AISmZoVgFVo+279yKl5lZSn6yvat8r+BVCeeff0oCUWoRma7AkTDEylaAEfwAtMMPnLNCTxk7zkR8ElyaxRrkCAYBxQUjhwKntyCr3W8BiEDZwEvlnavk3ClzC4+LP7UbF6ueu6MR1WtL23JZOkHhiH0HSWaaoStmzgqC4O/gADMFIYnHg6rpniz4dtZdA181rTiDSFmKUG6+CyovcHWnOCkkt4q7VHWhJM4yRiv9aKSt2rr7Y4FCkdiEgFp1WwlAAkT5zTvYS9I4fOfZkNLPv85VQ4O0nUKIX+7iXBt+JfGuTw/BPwJXBz/n4gSSK/vxs8TIQNbeuond8gYhRnu3xn4hbl+slhyQd97O1mlceVU5Apd7A03IVTQjMUnsUH7aKIxzwt4Qt0U8Y+QWMcTP6lXZ2r5QLN6JPdrLGjvAF2+HvHrbNR85P1Bg0pMZcv5TZ6HdOqb2m2G0ruRcuw2IlfD3Wp9sBDT6e4tZWOsZGWVpLdb/uV9QXyXx0I50h91h1KTaOdweiT1LhfipPLrgmxFkCOTJAgVgdIJRjrSCt8c56v1aigeKNaeHqh+5u867dKKjpwJDcNtQgCsPPuSvbYtS2Y/QWoUFrUMRqiC/g3rwmUdXTmiIqQ74itTjMijjd/S7FZvu/OTmSXnGtjEqhopYrrtv3PCEgpNIDdskFUDSmJaCauIahMUMxjruKVWhbaiAd3BfxaUqFSQlTLoPrXzrsrk9ljhIEn3dcDc2/cPg0XpThMuIuBFlUXrheJvPhAf3gpx2Is2t7HooYulxjXeiv+P6XFZXBstglArM5ORwzmEJ6Dm47QrteWcDIuOi1Pe8HPd+8Y7U06PkSN6DUEKB5Hp6H/jCjOqYjC+DXnNI5MCJtOKZT1JK8C2MsxZs8DKIa1BWCQWAdHIJeTquv9rFQkZO7/fNFC4d4YyrIMWu0dwIOXq1u/UnCKiJz3cGdw6dXOh+sF1uobPYiQVq7wEStDkXHoJjP4Tvj2EnZrU3+TROb1wsOlnhCbX+wq9oYpXYYxJ2YiZlPtZZvXl9GcD31PyIxwUvlUyAtcVuAhUxyaOOwtbQaL19I/APXpWHG5nWesCJLOirJy0b4rEcVYIQL9HvwbliaJgqMDHtllecFT9hFeiw0aMVMHMqCz/0T35X7We8xNSlSlfYp1g83qMZqadAeLenTlWufa4KaA2/xNqQR1CusjOsGoC6k4KaYOujUBT2qZBKd8dtdsYO1SQM+Men+oiXqHmfNGvsiUn8iJsbl9zSc8FMSmCaVLZ1DeQfWyo28WRKPGTHzcplvjUBirKsY3Ckb4bDE0PEt85PFFmxhzKI371OSdjvJwemhYdOwmE/RYMFSwzQojTgaq6v3QODCVFhMmYNgdkp096GL+rKzN8yMeUvSoaKAh8Mc6gwAMnW6n9cy5uelTGIYCI3f0s8hp0T4DR0LjgSoE189VjhNoUUtepUxuj68s5MidXyiO+7aAC6ujhqctE6zO2A5LMYa5DYdwMQeqBvdqxpXHNZlUZgIgj4Eg9iNMTHvYjdLzcvmEGJbe3hyGsPnj02PKq4Qt70fKpcmKK+BSBhBG+ivA8u5DZLd0u/pnA/b6jjc8sW3oIIGbyvdg6MGyHLDkpSC4Yt1MIYzcg9abgYwC5nH/TKEkRMCtdqa1ctlhZLBNg0POWStf63JzeGwqvQmZbLvPzLL3ktoJG4EXq9H4GW+m7JlrNgpsU5VNe9IQJDsFuu1UGG8m0IydbphWyjHNC5VzsrNK6ZVvpbqbx5q+BtmkfQ0ElsWAQtEVRBCuXvM1SrIyvCX/nWxcbcYPz02bHjH4alT1awu5AJAxXa529iK0TH7ApU2DcSn6ykOsRRYEHs+Pp4ss6nM++WcmBlwSQ5YRREvgpS6zM3/c9JeJ4IpwA2frSaCNLvmiFT5rok4mJ0RcGAC0GKzk1epdN3opxCiHx1B4ibmQfZbt7B//nbFxi/+OyOBp5Z1IHoOlKpeay/LYKpi+d0dTbaDyw8an3RQkjUjNhY9MS4F6cDnbNlsuWCOCoeTInPHTYGqmRzcw8OfRipH9J53NKBZ6PIEXgvUFs7QrZIDtbimtfhcvmwgLZdXWYfEsSZWXM26kQtX2DnKCijELd5mnp470MhieMY9RA9KcDJ4sqwP3dx8T8MT2D9Joe8NYK/LrqGzoA8t6N0gcE1Lk+iwBInvBF8PTQ60HMM5/HO5iP+bccv8aNBz0iuvUM/pHjGmwUDROETVyWByI1wYVUq9KkY5/VLEIytx4YsOsCzrj4XpREbiNPxOPFSSD2K8zV2gZm7ab0rYoRDlTzMIOKJAW0gVOxEoC2gmGBdZnIFnyB8pTgPia2GU48zawEtlIoTzelAAFE2vOxcYxd7WiUGhUGT7JHi0CTv6rHhrcbvS1pO8VVVwOQpK1j77WZ2RvejSLsTyp1Okv/Oi/MAat642SaZRifQTfTdyqAt2Pmd7HjMPV0rDN1nd9Pk5iyOv+7KJS2KRsoRp8K1Fi8rJui/zFZXHQLuu2Lrp+1Z+M4Ugjp7rveERJIsWvj1gCmDcwrNyc4z+kKqteIXDQ4/bdhw2GrmW2qi+OgRkiNEv/WJBU/+KWnf1bMl2PTTuMkBq4vMLhmV99ndoxNMu4XpGEAn0pJoqoNoWymhEIdzDGmeAOnOMPZBYPdT8ZvcDMRNxmmFCGNS+fAc9xa694CvzzgdC0yAax2EZRF4jNN1BLTc0DgIsfzTReomOExPXqmD2I6c8Tb25NhEDIqz4STufeZPCEawqbe3lxMmbQLSOdDE5fk6pRJBAE4+KFsFCgebJUP+Et4WRTNtnApI5utImgpXwinRJGgsVZUzYGh6Z5n7F8vsB04zRHh0LwVFI6edLGI2cS0bSnBxcHBjSX0T+kkAR26sgziacmQHwPFCVUaI+AYFj1pHxWFz1oGqZzKIYsChrL6wrwdb+VHwiLiyQ/d9oqQwuN3yh0IE8YURvPVsdGjaswQiUwyOXhkBNHl4Mbszj2uTb3lWJsAutq04+xad4BatkY/QhSGq+rM9lFBscbsCTuhpgvyT3BNd7zhgq3D6vqoMgqStZoZEfv6gGqYya8/Ksud6N3xbng8lUj1clPT8xyB99jbuM9LykyyFxdhyco885G7AV27O4kfiG6OsMHNnhf7SXjBxHeWvzZ/W/jLg25wItWeqmathmlW/jBZKYZKytq3fE9MUsh5DJkoadrp2uo53ITog8Vjk/Xc3f/VJlaR2JYXScOTFzt3/+xborcz98fYRG+Uvr70LleDzgXjlR0gwZ5vr6PCwn3u2QUJ8wK6f3Z+A5qSDnuthT48gzPRK76lKT5VBit6TqHeklxDrvgZUowZJyqnPyOqOvQgMUJh0YbW5hBxD+bvltqgFp7yN+1G0YIc30x7Dw0MidTcTy7zK0zuQYA6j2wXgvn97dsMcKaglA8Zm0B+ftdGKV+ZVZhEAkD6iDA/VkL0qB4ERNflGgpVGlUN+EmfbLYzSI3KnC9RyNa2sqYaronVdnWTVUw5Nrp5+J4kxpx0GHTFwJj/0QOP9QdxmHIpXHm3uWJF26UVVytER2N+OVf+rlcBC9xagnOuiQglhJf/tBbQkooxuPR/MlRlfD57KbrlMou63dOorIMykkXI+7fz1nWW5DEeC8YxJlqLt36jXDOBMobG8TNeqlwSW+sWf+BTJPePqf4hmKAXs4eGEG4Kc1mLyvTXCLEQL+3cLrPnzTSYw5ZSR9Yejm1AZ8DSf7M5rCPo1XVOZ5V6zirwFpDihnAp8wu4eHCmsHPSfhlbxTyBZNZtdXH3x8yrDT90rzYG1xDWlgl1z7qghboD7SaiMr6cxP5+W+c8xWN4efwlXByse68QHgUWs8Di2c0syLV5bjur1vVOwtwxJPG6ZhqVnYODi2Ox9Hx/lr/vaJ+OyfEKnrlcOKvAGT8Dl385Ldf5Qw4YAvw23uJRG3ViDZfbOqJiE5F75d3mtSSwTZUQjvyAivVo+/Bt085xrLqtvXpKWD1k8yesTKMOEFbveXxvRSUE5EF6EabRYzODKr3W/lr/jHW2z07Tu7Fb7fUtxcb/HOV5xRpHVxQkwyKf96VvWehWKSUZcRg8lR67+xVwNZDuz+gIRj1mHHp74envdk3UCudoJ8jlKITAUz3xiKIm0Yo4Nn2NWb2EjFzUW15d/Dljnn/qAPDmuDE3YOF7ho1sKCGDis2zSRVfXjOzeKjCLlGHNdgszzQgvrbk1qETgHYNztYjU3roxV2cvkHFAX5PZUOEFXXt71rAatwLvVbRKvUAJNrQC56xnGbfIReGWOSi9bOu2LiXzXPm7VwWKMT9k8MX+ZfmZLZiWO1Pda6pB6BVQY39wYvGLOl8KhghNxr6oRRLjujsLKDNuvrqJGMXi/dWsdgcK0DopMD98HdqjziRO6UQiLrfLlSffxm6C9Fyw72So8ZTSTejoVxWFUySRzaUOq0CRG6ninOmhClzFTrVdTCNxT/eIpg1yvhbOvwufinW/4wDGVt36oCwYvNWMBnx6vMTq+k+iuBtIV2zatloO/YSJ3ICx52UL1oJqDr2nnG6CY+HdxiDxo8t3uB9DfbCkxDRohZ+1l4P+lEmQoR7Sh3wFdVQPs3hguPSw7aztnlRKE/ePXFZMdTJYiMcjWrbEUWgPqxCVqEPyQ55wEBscRQ15DfYXAuA3ixYCAq27Ox9lif44rjNCl/CpJxEQQvzmG2BvEyWie6hixITKV8syfbsrv9FholZg+VNM6dZm92HVBR+jjn7p86sDXJZ3wHtXH9uRFJvquzmNNiP/ufgz4K0/SkvK9BlZpBuTY/p8zORpboRA9zzjvJkz2aVo7ru3yLs1Xdygekv2OMtNZdUdbWTZbj2m3cyucTD9GWG4Ija6VrFktMYzUcLbiJdKQ7ACUWs+nuEk4gqAdjLCwSMY7Q22/rBhUk7xFP+eVvgKgdkL06vBbg9V9YTjAjh+udKqXyonTrcvJ6GqoZwaT75bpWaLUPhYAU9kx5yKlNHjo7ab8KVpMowGg/R6P4bsHmCm+aE8RusIYOI+tm4yx/wFQAIVy8BqwN9+AzR21VJvnVV89sVlu23jx4Cfktp9No0F1dnfqLO/leEFYD6LKMBFCYtcA4L9TYUJVJpaYyp5nuK4X3zVazrVYDD+4foDr3YKi7DugQzWqYOKuRJg9zvsucckIKh4UaJmb/RNZbGpqu7jXQpR+1ZUhrwTDM/owQAG2MjicjHtQfl/NOcHQOL+cCKqgy3ZQQ0oKn7FlZ4pKj8fvuHYFH3fCI0STRjWepbegfhc88euwGmNZRmM+Q7VFBGRGuXBrU+bBa0kZ9EyFGxkCMWVkBlmYGVgNxjc3w/X2g/dG/JDfsGzmvb/Z+l+/iUCJB91B9OaEtjADiq8ZLETq4F2RBKzgUbBAK9BpMioDC5Z5LL9VNjfBuVNZPlEffTw271qEECpq0eNKYnT42v1Ut+tvxxcterloJu2jkPO/WN0KDH0OPF8nR8kBmNS5N/w/8hKPv1n5loP/7ARuoplsFdj/ESwMCCxDC6+lFAkRtvXuOqEUeOLDmgPJdmua0qhjUB/zt4qdOOrdGJvDhN9Qh0X0OEuur0JHghhr/KSgoj+3BAEgMEQdCDfT4mwTorBsWAkE2PG17v6Tk1qE1FbxjIqG93ccoBDWPMRpV52deMEbZnpDaFTO7rOUCuhBv+Cq1Aq7u7o+LX4Qm4sdo5oIjgP79Y9uLZ0MFhzsXLpxQpR9x/sE/SgQyqNosVO5BtKUOw3CyukzPQ/giu0pdiv+ZxgJhJHuMqopznhyC043KPa7AA5nf/I1kkcQKx/4nRw8ZISmO2s7w25809Q4BXBq3RUPQUrYkYNBJbk4ClJ3ox8WEXGF/63JXahZ5hX6ItCeSs8OPU+2XQ+dkl+jAj4eCjLgJ+A+M1oAvT4po6MQ53bSBztfn/igkZ5v/Bm7Rxpd7N74sFUWLdN5YEZaxWUbc0VH/ab7yKcSmCuq7jQr39+9LsICQAsudsqA5EUgOB6mWbzsommxo7x/85KDpeHHEfwVwwV4TR/AGaDF5rKXVliq/wrrw+kDVrb8qrVlbdNT0E+Dc3sXhBYYfvL+mkc9wREkFHfBaEp+1ZdCcHk2HjM4J/8YkbjPirViXKKn+Hh5a5T2xGYL3dKl3KeP36JSH89cR8jxIbmo9CMcNTk8fXNhTdBzrY8g6mVd1AheO5XHjC0jtq+fg1JogZ5t0WwpDwRH/WCSDnIdv6TFSxhSlo1R9pSyEOnK8ZNLkD+sNXdEFQ9IvgM6q4rZeK0D195u+VvTa3DF4/87fAhUL/pgdqZ+r76S6Wv+BIXkmwY3kC3lWiNqlsMGy/+bz1vZQRGWUy82ICfMlUh0MEUhR/9Pk6+LDp/rUewl0ZECVVA0JDocxH2FBQVHSldFV0MG4LuDKFPX7iZ2JYNy036w4bSyu5wvhDXNoKTmVK5aGcd+O5vg94r5hVD+BNKZVruIPxuhjmdrTPFQyBE9NN5xP7gi0IYWBth5GSCMN2Bu/vy1uSNfghOkGwxPSTw4bFx+3phw81cuGGGI6NCgE9e7PPDMlKZ9aIGegCwV905CgdZNVetafc7pFN/CQGIJG++npFSBYW4/KTeg7Ywb0F88onOs7gQYbXTV5IyXOlFBSX6RV7yCuFgaDQXlprQqACrQtSFnvITexoTNX25P4uZvIuF+pi94ZxSGUZSMc/uGbUvQIhY1AVOotdu7B8N1XG1BeHTQsJHNKlxJ+p8eiCP2hBX/QkNpNlvZm1caxbnxQbRK6gotRvL6Y8tdCXcRxbyhVCtJXXTfmJA4QaM7+GMYQ7Mvkq/HRVNiYSzAxOfFDp/OWx6or9EuHZByPFxWMEjyLeHqm9cNLpZ42UNYJTXMop3xV7WJp0zjtl9kQiiO+aIXRSe7XnkxKqLlg84Oeos/WXKqSBGwGaIM4nQh/pJO6y0TQRQxvKUCt0Du8Bte+96a59dcq46ZeI+xr1fGC5B1f8GKS6Z/4T7EF1gy3Rd5ERIsy6hbHbRUo3O3VICU0Z6sh2sUKJ6QOYlJ1e75NZm3NoDu5tx8git2dkpE9+HILpmH8LJ1mgHA+IbRmZriZWiXKmSVQ6/4BNhEg/ZR0uEo390+BQ2Cmbeju/No+6r+bwkSbl8HQZNs4ANbQOMav34lfBbnHTk/nrO+oPEuzd0RfJ9wEBYqDkwVO6x70s0/7M12pyB3Bs5/62aCn0DRe8rsCULxY3t6LtCXAZyy8P1rx3JfKxXzV9MwJcBmX75NRja317eTjHrPdprCnmXPWhPZPGRXRrdXuIPiZwDX9zKNW2pqYyILvsrHK3D9TQebWMFG4H8g9gi+dqxIs6y0ejaN9Wdli+BEcslOeX1X5fL66FRWeiN5nY1NCHJU2DFjOsE+TTB0/r4eib33enjMy1R/K4aMul4UHIQABMgVNTq6oXp1LPDlAOsEnwuGExLwan0mGuVaN5MIXYt+sVMjt1iir85ZireuGCtYQuT+ee+aY2m3NNGs2UfWEU/aHfCVnSQaag6Y2VoQM8v1vWRVub1bFduxlNArLz0bAlucnNPdFoqqTEx0Jcy/3vUzsIb8D7XMdf6ZNS4S25oTQbVpFfo7pE1kAhAVpHNl+QdH1u2R4WVvT/Q2d0JoJ6pHhWf76zSGtP6iU60wxK3QLgKQnmUu1i6eJDpDCmOqI/28/aVMe5PKbeuD+X5nupa8Gvz3hjmwh8WQ8q6WhD3yCHss09v5w6ZaXREUIS9ffrHAERYbcrISDDdfVKg+80EhePQXfNGtiphdavJK9p41mvih8IqmQr5uFd92a+bsl3tWaRZg8JTD3XA8SY6svh5pyTM4uOX7b9IRPQLdmTKPeHfF4iVCvK83lc0uNeuabyRKUgAjavYG2ZZJIMyEu0bVx1dW8m2DLeu23EJVEUUd/IMQ7ruR00BIYeJx+C6v9v4cPaotA60i58q/tOTmvdtjDLV6EV0TOuhx1zk5VBLhVcW12Hq2+kh6+XnTiUSa6vX9gviaYJrfbJcHoFynMSjpa1dr9TKJv1eew0Idcf+UB4y3t/KHcL2lr6g059b57mFYBl+sVLfUwrHPzRYfyOmWypjafaddnrnul9+WxBviO2uVVOxgbjAdy70ukaPM2MSFABzAyylJy8u6cBbwBV0am7YTF0k2nKzVyE6cZ2IO4qg9DuPS6tlK1Ks5HtZShD+aPSiRoNmqy32ri2agrx/3rLETtWEKiH67wo41DSguy84fDqsE2ge78ny29C8I096UfsW2V27QIeAe3Tu/2PN2fJGV6s0liIt9jO+WtNDFFqJ1Ti3ZTP7XsWn0UQ2sLwvATgVyz6v8k0FCA0JV0ymkXjC38HfpDW0C/wL6HZuwjpKDvaKQJiQysccqFfdnWN+2Y4CyI7nI2TnPrUkoSvtWVUKkGFzE1UagaC1tFJYkt7bP3OySauIgQ5NLYNDw+pTDWee2Z9M9zvJoOi/MQ+7gLAQhbC4AVjS/yyQ+34N1wxANgAAiLhQrJho8laayNwl1CaNtuIG7toRdDZQWTo5Fs9N4GBPaegwWo4DV9bzYKE5ZMreqeBY/mnMmJ0G6U4BIF9zriHr7F2DkBbAXOR7SV6my4OkpJxOkmWqVMaCxM/indf7kprvRBYrbs+XtbI0kM0ZDAnNLDVjCLLbd58VnYpUFy2cDggJruNjQOhVP9xl7+exkcW1zHqemkbfL6BBw7elswWnuNFu4wOig8mGX3JU6dnYc3NHqTmL4NrUZ8r+w97JY/NQ0o+HQTisjFBbgrffieJLZboHz7PhWgByTwZIj4LHWEhY7cXFIE2spxRnVQA/6MGLvt46Z0dL/FjWw5cxZnMjb04fU10HZoTD6eJ6XJxEpEnjyJ+zKEtZlMHJFR7lzB/HMcSKZs+oZZ9LIRvzwKYF5tXlOqgWvP536fX6JSlimY0cHW7nSWgxR+D8kcydkAgZ5U0a1EdCFTjLI3K+ybtHFgNspaPmXJLaAPIDNB1+axdAorR7B1zUNlGexvRC6foRhypS+qjxRHRzD4346jn1sFu8HQ5SYq9GW9mo8bcYmtCFOzsW/uLkYVHj/MkLNtis1w6YWtGKK0BM4dC/+zNdX6fn0W6rpGJH77FuLotCMrfVHcl0mLtglt595tQFjLljxGzhRLfzQ+HEqq9VpkFcrMRkev1rLy2mLvwlY2eIz93pyUQgd325apD61o1zgDZvhq5zj8qFo9EGuUggkYf2Fi8wHGmoHLYBWaTlG2xjAip3YI4OdlYs8150xmLHJ0gS1i3dTZjV3IYTu71M5DXTox1W1PACHFD9+r4H/dMnkrEAJgE75bVv8vImV7UMIcjucKhL25rHM7644tpzcmeDHWcqKmmBcSggV11Q0W1+oz8hbvWh3lIWg6h/RQBJeEx7xLId/9LXqyOfwobh9tm0QPb817pi4Zo58g+reaX1WvIXt3U+qr2AG1VMa7f3bvo9upt1+vALQQKEgApMWx9HGz9Vjm4RUrcBtVGUAu8bw4dIVytA1XPL+TA1sjZq6zxevmBv61PMdo5BV96t+1fFigj3u4BdaoJoVUPUD/aS3aviS/H52jwte0/86exd3CjbDSBveVlX69Bld8LiPy7dTlgypbaLhiQ5oyEt/hG6xusdzrCIG1KTt9Vmzlckp0L9RaAcMMcWOdufI27dsZAHRZyQIrBCpnxvwbOaPAJ1fovBO6HsQlW8ke9cNRvCrg0lykFh7d9SnKrlaMMAgaABCBMrd/aJuuphFk87UDIxq9ejz7CCCjehY0tjpWqmLJ/SJzYJDYDmBZbQ44YNY8DYKLAGmde9XGR6LunZUahZCnmUTs5bWChIt+Re6043z9el8Yg9/zcbQ0VLHroocBTz31ca/SZ/ii5KjpBmTZP7b3MZazxmAZgdfIpY9bAka2jkwFv21ShgSrpzT8mbUmIjgYffcvfcQIXXNCCf2Rjf5HAHjrriequsqkY3zqwYEh6aXG/fVDpX9jbAC73EHoB+Ibt3h/+T71BXQtmiu0YPBcN5R76mx/V0kPnKbPIp/ME1f1S2CT4kYH8EhRawDZ+//QiRlCadkrvqqEns0Z3CvaI/pG6wq/x22BV5kopMxDXfg2uM/UgnLjRdmFpCDkmRJKy+gNZWvmJjCoSQVfbu5n9LhfBTYpUvB33h3IjPOKiq4oAEECv/EEXyYViTzyRngONF6h2QeHG06hbdANiPxJGvmPb6am3zOqlLzOnLOSjfSnqbvqrVP/ZWZX6R6oz6gWpR2h0Cu+/Yn8+2nLmeXwDDEXJimiBC5NQJROA0zPJlEF6FzQOzSxxUex2ornWV7RyOELJFLRnfsjTHkYQpzGKFn3gd3XRMN9R7p7kuizRXI/U84cK/k1lXeHnXOm1YPRAq0Q5+OK/EBDb0ZoM+pwCGaPrHh//9opmynp5F6WMbCSmd3IP02F0eRnyOxO9Hb6FXkfg6VqAY8MOWSuniofe+876GrJA6jJgfkFs9hv+O5IdZuGz8dF5ledRmrTS2zXYolnFhMwAAyvxWfjxVH0bHtzIKSpQIm9BxbpNyGEeCyxAaUSsYHlZWS9uf0n2tnI1koZPToVuIWNHI9JUpW43ttmfBIDy23MJIaSVt4yiweqWhuXakb3JdunKVe9ttenDnoNHksESRnoYBJFSZecq+WgS4qXdBaMCNJ6J8BUJqSDVCAg6nos4LvQj9X3vz41h5TmYuNUo/tZAyH+w2BlDrJT68srK+nWZu0Z81Fs178AJxnXADCOlhcGmwvbJ/EPB9/UNEj1WlPfdgYfWv4Nj6ZXli04yuBqiKawlVfNvLrII1g6GU14DVUs9ZAP7B54akg+QvRsKd+vTJo7kWddtd05AQA20C6Rq1CihfbwKXdfII6EPmbDyqBuDMlkmqSh3Pn686frGAGDkAAFTDQnDD8IvIclRNTUoTniWfK9baAeDK/9A94qwIqKcq0da5uwOCB/zfAugYm9aI0nXn5VHx1F53pSIv/qe0S9B75vDdVVI6YVhsWqCilcbXGmYT5gpS5Y4VbdE0ocN/bY/0tp3VWGxTJZ2D95GqgmnEmZUAdXvmrcGC4lClzMjn4xj1+eh4UASp7eQap6LZcZIt3HjefGvPKZgz9pX2pS4upvr/6pMYL17kARUDXdYUePKcTjUnIgkAhuKTHkiKgClKs5L/lQkr0Cx4JHd+3SlW+4iSRWtERLOtGNY4rXwkA+iJeC40SOscUHRA+R/bSDyimoqRLD7dSnhsI5f664NnRAqXyL7tGB7o5e47iiUCM0L8upO4d+JX5ciW5zGtbgoeAG1pbIiMd1Cc7PkxRnzdp8YmtfvtQK1z7X1TOM2OQ7Aq/KEApp3YwWNiiageLBm359H0p2iqpVJ9b6UJ4odSs2H0vlO4GkQQgKlqVsVkhj+lTtjzqxmbRzvYZtAU+zVEO1RwHIwCv7eXKF2M6oknmpF85nTeTMJtY6xr8hBufxXyIs47jkHI0uOmK46YAgvTmGdUO1fEljNqNSYkaWfZZjnXrHtjeX/r3DAkCTHrZD2y9Rb8ofNGDzJlmvqyzgXliYCxE8rB1+G0Lfhyzz0NkzT6r6Y7KPMmMcI/eyLXcitE4mKicOxy5YQKmPxaXgGLhkGhf6Zlh5QZ5gLh4nZA4pnP0GHOEAC9WR+SjTk71wmb8vmxUfXjIpeD4q7gk+dOu8Sj/P8yB/al7cA08ImEcafl+Q286+5FdSQxfCk+FU/WznA72smjUtzVgy9fAUkoyWJSKNhuD7ViPIhLwAAAAAAAAAAAAAA=");
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scrollbar-color: var(--water) var(--mist); }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--foam);
+    caret-color: var(--gold);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--gold-bright); color: var(--ink); }
+  svg { display: block; }
+  a { color: var(--water); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  a:hover { color: var(--rinse-deep); }
+  :focus { outline: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid transparent; /* shows in forced-colors mode */
+    box-shadow: var(--focus);
+    border-radius: 6px;
+  }
+  h1, h2, h3 { line-height: 1.05; margin: 0; text-wrap: balance; }
+  p { margin: 0; text-wrap: pretty; }
+  .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .skip {
+    position: absolute; left: 1rem; top: -4rem; z-index: 50;
+    background: var(--ink); color: #fff; padding: .6rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 700;
+  }
+  .skip:focus { top: 1rem; color: #fff; }
+
+  .ico { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- Buttons (as index.html) ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    min-height: 3.5rem; padding: .9rem 1.5rem;
+    font: inherit; font-weight: 800; font-size: 1.0625rem; letter-spacing: .01em; line-height: 1.2;
+    text-decoration: none; border-radius: 999px; border: 2px solid transparent;
+    cursor: pointer; white-space: nowrap;
+    transition: background-color .18s var(--ease-out), color .18s var(--ease-out), border-color .18s var(--ease-out), box-shadow .25s var(--ease-out), transform .25s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:focus-visible { border-radius: 999px; }
+  .btn-gold { background: var(--gold); color: var(--ink); border: 1.5px solid var(--edge); box-shadow: 0 6px 18px -6px rgba(133, 96, 15, .55); }
+  .btn-gold:hover { background: var(--gold-bright); color: var(--ink); border-color: var(--ink-soft); transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(133, 96, 15, .6); }
+  .btn-gold:focus-visible { box-shadow: var(--focus), 0 6px 18px -6px rgba(133, 96, 15, .55); }
+  .btn-line { background: #fff; color: var(--ink); border: 1.5px solid var(--edge); font-weight: 700; }
+  .btn-line:hover { background: var(--mist); color: var(--ink); border-color: var(--ink-soft); }
+  .btn:active { background: var(--ink); color: var(--gold-bright); border-color: var(--ink); transform: none; box-shadow: none; }
+
+  /* ---------- Top bar ---------- */
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+  .brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .02em; font-size: .95rem; line-height: 1.2; text-transform: uppercase; }
+  .brand:hover { color: var(--ink); }
+  .logo {
+    width: 44px; height: 44px; flex: none; border-radius: 50%;
+    background: #000 var(--logo) center / cover no-repeat;
+    box-shadow: 0 0 0 2px var(--gold), 0 4px 10px -4px rgba(20,23,26,.5);
+  }
+  .top-call {
+    display: grid; place-items: center; width: 3rem; height: 3rem; flex: none; border-radius: 50%;
+    color: var(--ink); background: #fff; border: 2px solid var(--ink); text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .top-call:hover { color: var(--ink); background: var(--mist); }
+  .top-call:active { background: var(--ink); color: var(--gold-bright); }
+  .top-call:focus-visible { border-radius: 50%; }
+  .top-call span { display: none; }
+  @media (min-width: 760px) {
+    .top-call { display: inline-flex; width: auto; height: auto; min-height: 2.75rem; gap: .45rem; border: 0; background: none; font-weight: 700; font-variant-numeric: tabular-nums; border-radius: 999px; padding-inline: .25rem; }
+    .top-call:hover { background: none; color: var(--water); }
+    .top-call:active { background: none; color: var(--rinse-deep); }
+    .top-call span { display: inline; }
+    .top-call:focus-visible { border-radius: 999px; }
+  }
+
+  /* ---------- Head band ---------- */
+  .head {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 85% 0%, #d9e8f2 0%, rgba(217,232,242,0) 65%),
+      linear-gradient(#edf3f8, #e6eff6);
+  }
+  .head .top, .head-copy { position: relative; z-index: 1; }
+  .head-copy { padding-top: clamp(.75rem, 3vw, 2.25rem); padding-bottom: clamp(2.25rem, 6vw, 3.75rem); }
+  .head h1 {
+    font-size: clamp(2.4rem, 10vw, 4.5rem);
+    font-weight: 900; letter-spacing: -0.035em; line-height: .92; text-transform: uppercase;
+  }
+  .head h1 .line { display: block; }
+  .head h1 .accent { color: var(--rinse); }
+  .lead { margin-top: 1.1rem; font-size: clamp(1.0625rem, 2.4vw, 1.25rem); line-height: 1.45; color: var(--ink-soft); max-width: 38ch; }
+  .lead strong { color: var(--ink); font-weight: 700; }
+
+  /* A few suds drifting up through the band: the hero's loose-bubble glass. */
+  .suds { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .sud {
+    position: absolute; border-radius: 50%;
+    width: var(--s); height: var(--s); left: var(--x); top: var(--y);
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,0) 17%),
+      radial-gradient(circle, rgba(255,255,255,.08) 55%, rgba(200,222,238,.55) 80%, rgba(255,255,255,.95) 97%);
+    box-shadow: 0 1px 3px rgba(79,125,158,.28);
+    animation: drift var(--d) ease-in-out infinite alternate;
+    animation-delay: var(--dl);
+  }
+  @media (max-width: 759.98px) { .suds { display: none; } }
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(var(--sx), -14px); }
+  }
+
+  /* Ripple seam (static frame of index.html's). */
+  .ripple { color: var(--water); height: 28px; width: 100%; }
+  .ripple path { stroke-opacity: .35; }
+  .ripple .ripple-fill { stroke: none; }
+
+  /* ---------- Form ---------- */
+  .book { padding-block: clamp(2.25rem, 6vw, 4rem) clamp(3.5rem, 9vw, 6rem); }
+  .book-grid { display: grid; gap: 3rem; }
+  form { max-width: 40rem; }
+  .qs { border-top: 2px solid var(--ink); }
+  .q { padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .lab, legend {
+    display: block; padding: 0; margin: 0 0 .65rem;
+    font-weight: 800; font-size: 1.125rem; line-height: 1.25; letter-spacing: .005em; color: var(--ink);
+  }
+  /* Legends float so they sit inside the row's padding like the labels do. */
+  legend { float: left; width: 100%; }
+  legend + * { clear: both; }
+  .opt { font-weight: 500; color: var(--ink-soft); }
+  .hint { display: block; margin: -.4rem 0 .65rem; font-size: .95rem; color: var(--ink-soft); }
+
+  .in {
+    display: block; width: 100%; min-height: 3.25rem;
+    padding: .75rem 1.25rem; font: inherit; font-size: 1.0625rem; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--edge); border-radius: 999px;
+    transition: border-color .18s var(--ease-out), box-shadow .2s var(--ease-out);
+    -webkit-appearance: none; appearance: none;
+  }
+  .in::placeholder { color: #66737e; }
+  .in:hover { border-color: var(--ink-soft); }
+  .in:focus-visible, .in:focus { border-color: var(--ink); box-shadow: var(--focus); border-radius: 999px; }
+  textarea.in { border-radius: 1.6rem; min-height: 7.5rem; resize: vertical; line-height: 1.5; padding-block: .9rem; }
+  textarea.in:focus { border-radius: 1.6rem; }
+  input[type="date"].in { max-width: 16rem; font-variant-numeric: tabular-nums; }
+  input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: .7; }
+  .in[aria-invalid="true"] { border-color: var(--alert); border-width: 2px; }
+
+  /* Pill radios: a real radio under each pill; the dot is the mark. */
+  .pills { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .pill-opt { position: relative; }
+  .pill-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .pill {
+    display: inline-flex; align-items: center; gap: .6rem; min-height: 3rem;
+    padding: .6rem 1.15rem .6rem .9rem; border-radius: 999px;
+    background: #fff; border: 1.5px solid var(--edge); color: var(--ink);
+    font-weight: 700; line-height: 1.2; cursor: pointer;
+    transition: background-color .18s var(--ease-out), color .18s var(--ease-out), border-color .18s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pill small { font-size: .875rem; font-weight: 600; color: var(--ink-soft); transition: color .18s var(--ease-out); }
+  .pill .dot { width: 1rem; height: 1rem; flex: none; border-radius: 50%; border: 1.5px solid var(--edge); background: #fff; transition: background-color .18s var(--ease-out), border-color .18s var(--ease-out); }
+  .pill-opt input:hover + .pill { background: var(--mist); border-color: var(--ink-soft); }
+  .pill-opt input:checked + .pill { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .pill-opt input:checked + .pill small { color: #d5e6f2; }
+  .pill-opt input:checked + .pill .dot { background: var(--gold); border-color: var(--gold-bright); }
+  .pill-opt input:active + .pill { background: var(--ink); color: var(--gold-bright); }
+  .pill-opt input:focus-visible + .pill { box-shadow: var(--focus); }
+  .group-invalid .pill { border-color: var(--alert); }
+  .services-pills .pill-opt { flex: 1 1 100%; }
+  .services-pills .pill { width: 100%; }
+  @media (min-width: 560px) { .services-pills .pill-opt { flex: 1 1 calc(50% - .6rem); } }
+
+  .when { display: grid; gap: 1.5rem; }
+
+  .err {
+    display: flex; align-items: flex-start; gap: .45rem; margin-top: .6rem;
+    font-size: .975rem; font-weight: 600; line-height: 1.4; color: var(--alert);
+  }
+  .err[hidden] { display: none; }
+  .err .ico { width: 1.15rem; height: 1.15rem; margin-top: .05rem; }
+
+  .send { margin-top: 2rem; display: grid; gap: .9rem; justify-items: start; }
+  .send .btn-gold { min-height: 3.875rem; padding-inline: 2.25rem; font-size: 1.1875rem; width: 100%; max-width: 26rem; }
+  .send p { font-size: .975rem; color: var(--ink-soft); max-width: 44ch; }
+
+  /* ---------- Confirmation ---------- */
+  .done[hidden] { display: none; }
+  .done h2 { font-size: clamp(2rem, 7vw, 3.25rem); font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+  .done h2:focus { outline: none; box-shadow: none; }
+  .done .ready { margin-top: .9rem; font-size: clamp(1.125rem, 2.4vw, 1.3rem); line-height: 1.45; color: var(--ink); font-weight: 700; max-width: 34ch; }
+  .done .actions { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.5rem; max-width: 26rem; }
+  .done .actions .btn { width: 100%; }
+  .fallback { margin-top: 2.5rem; border-top: 2px solid var(--ink); padding-top: 1.5rem; }
+  .fallback h3 { font-size: clamp(1.35rem, 4.4vw, 1.75rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.15; }
+  .fallback > p { margin-top: .5rem; color: var(--ink-soft); max-width: 46ch; }
+  .fallback .num { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .msg {
+    margin: 1.25rem 0 0; padding: 1.1rem 0 1.25rem;
+    border-block: 1px solid var(--line);
+    font: inherit; font-size: 1.0625rem; line-height: 1.55; color: var(--ink);
+    white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+  .fb-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; align-items: center; }
+  .copied { font-weight: 700; color: var(--rinse); min-height: 1.6em; }
+  .edit { margin-top: 2rem; }
+  .text-link {
+    display: inline-flex; align-items: center; gap: .4rem; min-height: 2.75rem;
+    font: inherit; font-weight: 700; color: var(--water); background: none; border: 0; padding: 0; cursor: pointer;
+    text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px;
+  }
+  .text-link:hover { color: var(--rinse-deep); }
+  .text-link:focus-visible { border-radius: 6px; }
+
+  /* ---------- Aside: what happens next ---------- */
+  .next h2 { font-size: clamp(1.6rem, 5vw, 2.25rem); font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+  .steps { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 1.5rem; }
+  .steps li { display: grid; grid-template-columns: 2.75rem 1fr; gap: 0 1rem; align-items: start; }
+  .steps .n { font-size: 3.25rem; font-weight: 900; line-height: .8; color: var(--rinse); letter-spacing: -0.05em; font-variant-numeric: lining-nums; }
+  .steps h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
+  .steps p { margin-top: .3rem; color: var(--ink-soft); max-width: 34ch; }
+  .next .talk { margin-top: 2rem; color: var(--ink-soft); }
+  .next .talk a { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  @media (min-width: 900px) {
+    .book-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 5rem; align-items: start; }
+    .next { position: sticky; top: 2rem; padding-top: .5rem; }
+    .send .btn-gold, .done .actions .btn { width: auto; }
+    .done .actions { flex-direction: row; max-width: none; }
+  }
+
+  /* ---------- Footer (as index.html) ---------- */
+  footer { background: var(--mist); border-top: 1px solid var(--line); padding-block: 2.5rem; font-size: .95rem; color: var(--ink-soft); }
+  footer .wrap { display: grid; gap: 1.25rem; }
+  footer .brand { font-size: .9rem; }
+  footer a.phone { font-weight: 700; color: var(--ink); text-decoration: none; font-variant-numeric: tabular-nums; }
+  footer a.phone:hover { color: var(--water); }
+  footer .demo { font-size: .8125rem; color: #5b6873; }
+  @media (min-width: 760px) { footer .wrap { grid-template-columns: 1fr auto; align-items: center; } footer .demo { grid-column: 1 / -1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#book-form">Skip to the form</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11 11 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6V19a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.7 2 2 0 0 1 5 3.5z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6.5A2.5 2.5 0 0 0 4 6v8a2.5 2.5 0 0 0 2.5 2.5h2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></symbol>
+</svg>
+<header class="head">
+  <div class="suds" aria-hidden="true">
+    <span class="sud" style="--s:30px;--x:78%;--y:58%;--d:9s;--dl:-2s;--sx:-6px"></span>
+    <span class="sud" style="--s:14px;--x:86%;--y:32%;--d:7s;--dl:-5s;--sx:5px"></span>
+    <span class="sud" style="--s:20px;--x:92%;--y:70%;--d:11s;--dl:-1s;--sx:-4px"></span>
+    <span class="sud" style="--s:10px;--x:71%;--y:80%;--d:8s;--dl:-6s;--sx:4px"></span>
+    <span class="sud" style="--s:24px;--x:63%;--y:40%;--d:12s;--dl:-8s;--sx:6px"></span>
+  </div>
+  <div class="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Blessed Mobile Detailing, home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Blessed Mobile Detailing</span>
+      </a>
+      <a class="top-call" href="tel:+19297958823" aria-label="Call (929) 795-8823"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span aria-hidden="true">(929) 795-8823</span></a>
+    </div>
+  </div>
+  <div class="wrap head-copy">
+    <h1><span class="line">Book a detail.</span><span class="line accent">We come to you.</span></h1>
+    <p class="lead"><strong>A few quick questions.</strong> We'll turn your answers into a text for you to send, and we'll reply with a quote and a time.</p>
+  </div>
+</header>
+<svg class="ripple" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:#e6eff6">
+  <path class="ripple-fill" d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14 V 28 H 0 Z" style="fill:var(--foam)"/>
+  <path d="M0 8 Q 75 2 150 8 T 300 8 T 450 8 T 600 8 T 750 8 T 900 8 T 1050 8 T 1200 8" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <path d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  <path d="M0 20 Q 75 14 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+</svg>
+<main class="book">
+  <div class="wrap book-grid">
+    <div>
+      <form id="book-form" novalidate aria-label="Booking details">
+        <div class="qs">
+          <div class="q">
+            <label class="lab" for="f-name">Your name</label>
+            <input class="in" id="f-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required aria-describedby="e-name">
+            <p class="err" id="e-name" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+
+          <fieldset class="q" id="g-service" aria-describedby="e-service">
+            <legend>Which detail?</legend>
+            <div class="pills services-pills">
+              <div class="pill-opt"><input type="radio" name="service" id="s-full" value="Full Detail (Interior + Exterior)" data-key="full" required><label class="pill" for="s-full"><span class="dot" aria-hidden="true"></span><span>Full Detail <small>Interior + Exterior</small></span></label></div>
+              <div class="pill-opt"><input type="radio" name="service" id="s-interior" value="Interior Detail" data-key="interior"><label class="pill" for="s-interior"><span class="dot" aria-hidden="true"></span>Interior Detail</label></div>
+              <div class="pill-opt"><input type="radio" name="service" id="s-exterior" value="Exterior Detail" data-key="exterior"><label class="pill" for="s-exterior"><span class="dot" aria-hidden="true"></span>Exterior Detail</label></div>
+              <div class="pill-opt"><input type="radio" name="service" id="s-express" value="Express Refresh" data-key="express"><label class="pill" for="s-express"><span class="dot" aria-hidden="true"></span>Express Refresh</label></div>
+            </div>
+            <p class="err" id="e-service" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </fieldset>
+
+          <div class="q">
+            <label class="lab" for="f-vehicle">Your vehicle</label>
+            <span class="hint" id="h-vehicle">Year, make, and model, like 2019 Honda Civic</span>
+            <input class="in" id="f-vehicle" name="vehicle" type="text" autocomplete="off" autocapitalize="words" enterkeyhint="next" required aria-describedby="h-vehicle e-vehicle">
+            <p class="err" id="e-vehicle" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+
+          <div class="q">
+            <label class="lab" for="f-where">Where's the car?</label>
+            <span class="hint" id="h-where">Your address or town in Ocean County</span>
+            <input class="in" id="f-where" name="where" type="text" autocomplete="street-address" enterkeyhint="next" required aria-describedby="h-where e-where">
+            <p class="err" id="e-where" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+          </div>
+
+          <div class="q when">
+            <div>
+              <label class="lab" for="f-day">Preferred day <span class="opt">(optional)</span></label>
+              <input class="in" id="f-day" name="day" type="date" aria-describedby="e-day">
+              <p class="err" id="e-day" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+            </div>
+            <fieldset>
+              <legend>Preferred time <span class="opt">(optional)</span></legend>
+              <div class="pills">
+                <div class="pill-opt"><input type="radio" name="time" id="t-morning" value="Morning"><label class="pill" for="t-morning"><span class="dot" aria-hidden="true"></span>Morning</label></div>
+                <div class="pill-opt"><input type="radio" name="time" id="t-afternoon" value="Afternoon"><label class="pill" for="t-afternoon"><span class="dot" aria-hidden="true"></span>Afternoon</label></div>
+                <div class="pill-opt"><input type="radio" name="time" id="t-evening" value="Evening"><label class="pill" for="t-evening"><span class="dot" aria-hidden="true"></span>Evening</label></div>
+                <div class="pill-opt"><input type="radio" name="time" id="t-flexible" value="Flexible"><label class="pill" for="t-flexible"><span class="dot" aria-hidden="true"></span>Flexible</label></div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="q">
+            <label class="lab" for="f-notes">Anything else? <span class="opt">(optional)</span></label>
+            <span class="hint" id="h-notes">Pet hair, stains, smells, a car seat to work around</span>
+            <textarea class="in" id="f-notes" name="notes" rows="3" aria-describedby="h-notes"></textarea>
+          </div>
+        </div>
+
+        <div class="send">
+          <button class="btn btn-gold" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-text"/></svg>Text my booking</button>
+          <p>This opens your messages app with your answers filled in. Nothing is sent until you hit send.</p>
+        </div>
+      </form>
+
+      <section class="done" id="done" hidden aria-labelledby="done-h">
+        <h2 id="done-h" tabindex="-1">Almost booked</h2>
+        <p class="ready">Your text is ready — just hit send in your messages app.</p>
+        <div class="actions">
+          <a class="btn btn-gold" id="again" href="sms:+19297958823"><svg class="ico" aria-hidden="true"><use href="#i-text"/></svg>Open the text again</a>
+        </div>
+        <div class="fallback">
+          <h3>Messages didn't open?</h3>
+          <p>On a computer, text this to <span class="num">(929) 795-8823</span> from your phone, or give us a call.</p>
+          <pre class="msg" id="msg"></pre>
+          <div class="fb-actions">
+            <button class="btn btn-line" type="button" id="copy"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>Copy message</button>
+            <a class="btn btn-line" href="tel:+19297958823"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Call instead</a>
+            <span class="copied" id="copied" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+        <p class="edit"><button class="text-link" type="button" id="edit"><svg class="ico" aria-hidden="true"><use href="#i-back"/></svg>Change my answers</button></p>
+      </section>
+    </div>
+
+    <aside class="next" aria-labelledby="next-h">
+      <h2 id="next-h">What happens next</h2>
+      <ol class="steps">
+        <li><span class="n" aria-hidden="true">1</span><div><h3>You hit send</h3><p>Your answers go out as a normal text from your phone.</p></div></li>
+        <li><span class="n" aria-hidden="true">2</span><div><h3>We text back</h3><p>A quote and a time that works for you.</p></div></li>
+        <li><span class="n" aria-hidden="true">3</span><div><h3>We come to you</h3><p>Driveway or office lot. No drop-off, no waiting room.</p></div></li>
+      </ol>
+      <p class="talk">Rather talk? Call <a href="tel:+19297958823">(929) 795-8823</a>.</p>
+    </aside>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="logo" aria-hidden="true"></span>
+      <span>Blessed Mobile Detailing</span>
+    </a>
+    <a class="phone" href="tel:+19297958823">(929) 795-8823</a>
+    <p class="demo">Demo one-pager — free sample.</p>
+  </div>
+</footer>
+<script>
+  (function () {
+    var PHONE = '+19297958823';
+    var form = document.getElementById('book-form');
+    var done = document.getElementById('done');
+    var $ = function (id) { return document.getElementById(id); };
+
+    // Favicon from the one embedded logo (the --logo custom property).
+    try {
+      var logo = getComputedStyle(document.documentElement).getPropertyValue('--logo');
+      var m = /url\(\s*["']?([^"')]+)["']?\s*\)/.exec(logo);
+      if (m) $('favicon').href = m[1];
+    } catch (e) {}
+
+    // Earliest day: today, in the visitor's own time zone.
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    var now = new Date();
+    var today = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+    $('f-day').min = today;
+
+    // Preselect a service from ?service=full|interior|exterior|express.
+    var want = (new URLSearchParams(location.search).get('service') || '').toLowerCase();
+    var pre = want && form.querySelector('input[name="service"][data-key="' + want.replace(/[^a-z]/g, '') + '"]');
+    if (pre) pre.checked = true;
+
+    function val(id) { return $(id).value.trim(); }
+    function picked(name) { var r = form.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+
+    function setErr(key, msg) {
+      var el = $('e-' + key), field = $('f-' + key), group = $('g-' + key);
+      el.hidden = !msg;
+      el.querySelector('span').textContent = msg || '';
+      if (field) { if (msg) field.setAttribute('aria-invalid', 'true'); else field.removeAttribute('aria-invalid'); }
+      if (group) group.classList.toggle('group-invalid', !!msg);
+    }
+
+    // Returns the first invalid control, or null.
+    function check() {
+      var first = null;
+      function rule(key, bad, msg, target) {
+        setErr(key, bad ? msg : '');
+        if (bad && !first) first = target || $('f-' + key);
+      }
+      rule('name', !val('f-name'), 'Add your name so we know who we\'re texting.');
+      rule('service', !picked('service'), 'Pick a detail. Not sure? Choose Full Detail and ask in your text.',
+        form.querySelector('input[name="service"]'));
+      rule('vehicle', !val('f-vehicle'), 'Add the year, make, and model, like 2019 Honda Civic.');
+      rule('where', !val('f-where'), 'Add your address or town so we know where to come.');
+      var day = $('f-day').value, badDay = $('f-day').validity && $('f-day').validity.badInput;
+      rule('day', badDay || (day && day < today), badDay ? 'That date doesn\'t look right. Pick a day from the calendar, or leave it blank.' : 'Pick today or a later day, or leave it blank.');
+      return first;
+    }
+
+    function niceDay(iso) {
+      var p = iso.split('-');
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+
+    function compose() {
+      var lines = [
+        'Hi Blessed Mobile Detailing! I\'d like to book a detail.',
+        'Name: ' + val('f-name'),
+        'Service: ' + picked('service'),
+        'Vehicle: ' + val('f-vehicle'),
+        'Where: ' + val('f-where')
+      ];
+      var when = [];
+      if ($('f-day').value) when.push(niceDay($('f-day').value));
+      if (picked('time')) when.push(picked('time'));
+      if (when.length) lines.push('When: ' + when.join(' · '));
+      if (val('f-notes')) lines.push('Notes: ' + val('f-notes'));
+      return lines.join('\n');
+    }
+
+    function smsUrl(body) { return 'sms:' + PHONE + '?&body=' + encodeURIComponent(body); }
+
+    // The one place the page hands off to the messages app.
+    function openText(url) { window.location.href = url; }
+
+    var tried = false;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      tried = true;
+      var bad = check();
+      if (bad) { bad.focus(); return; }
+      var body = compose(), url = smsUrl(body);
+      $('msg').textContent = body;
+      $('again').href = url;
+      $('copied').textContent = '';
+      form.hidden = true;
+      done.hidden = false;
+      $('done-h').focus();
+      openText(url);
+    });
+
+    // After a first attempt, errors clear as soon as they're fixed.
+    form.addEventListener('input', function () { if (tried) check(); });
+    form.addEventListener('change', function () { if (tried) check(); });
+
+    $('edit').addEventListener('click', function () {
+      done.hidden = true;
+      form.hidden = false;
+      $('f-name').focus();
+    });
+
+    function copied(ok) {
+      $('copied').textContent = ok ? 'Copied. Paste it into a text to (929) 795-8823.' : 'Couldn\'t copy. Select the message above and copy it.';
+    }
+    function legacyCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      $('copy').focus();
+      return ok;
+    }
+    $('copy').addEventListener('click', function () {
+      var text = $('msg').textContent;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { copied(true); }, function () { copied(legacyCopy(text)); });
+      } else {
+        copied(legacyCopy(text));
+      }
+    });
+  })();
+</script>
+</body>
+</html>
