@@ -186,7 +186,7 @@ Lists are ruled, not boxed: rows of 1.5rem vertical padding (2rem for the lead r
 Mostly flat with tonal banding. Depth comes from the world's materials (the foam bank, glass bubbles) and from soft, tinted shadows under the gold and the bubbles; no surface is lifted as a card. Layering inside the hero is fixed: photo bubbles and loose bubbles at the back (z 0), the foam canvas over them (z 1), the copy and freed bubbles on top (z 2).
 
 ### Shadow Vocabulary
-- **Gold lift** (`box-shadow: 0 1px 0 rgba(255,255,255,.55) inset, 0 6px 18px -6px rgba(133,96,15,.55)`): primary button at rest; deepens to `0 10px 24px -8px` on hover with a 1px rise.
+- **Gold lift** (`box-shadow: 0 6px 18px -6px rgba(133,96,15,.55)`): primary button at rest; deepens to `0 10px 24px -8px` on hover with a 1px rise.
 - **Logo ring** (`box-shadow: 0 0 0 2px gold, 0 4px 10px -4px rgba(20,23,26,.5)`): the 44px logo in the top bar and footer.
 - **Bubble contact** (`box-shadow: 0 0 0 1px rgba(255,255,255,.75), 0 12px 20px -14px rgba(15,74,114,.4)`): a white hairline rim and a faint navy contact shadow under each photo bubble.
 - **Glass wall** (stacked insets: 1.5px white at .95, then 3px cyan, 4.5px magenta, 6px gold film at .38/.22/.14, plus `inset 0 -20px 34px -12px rgba(21,90,136,.32)`): the soap-film wall drawn over each photo.
