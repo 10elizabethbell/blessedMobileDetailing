@@ -201,7 +201,7 @@ Mostly flat with tonal banding. Depth comes from the world's materials (the foam
 
 ## Shapes
 
-Only two silhouettes: the pill (999px) for buttons and the circle for the logo, photo bubbles, foam and loose bubbles, dot marks, town dots, the sticky call button, and water beads (slightly flattened, 50% 50% 48% 48% / 46% 46% 54% 54%). Everything else is unbounded: sections are full-bleed bands, lists are ruled rows, and there are no cornered cards. Photography is only ever clipped to a circle. Borders are hairlines (1px waterline) or deliberate rules (2px ink top rule on the service list, 1.5px underline on quote links). Section joins are ripple seams: three stacked quadratic wave strokes, 1.5px non-scaling, 28px tall, drawn over a hard 50/50 split of the two adjoining band colors.
+Only two silhouettes: the pill (999px) for buttons and the circle for the logo, photo bubbles, foam and loose bubbles, dot marks, town dots, the sticky call button, and water beads (slightly flattened, 50% 50% 48% 48% / 46% 46% 54% 54%). Everything else is unbounded: sections are full-bleed bands, lists are ruled rows, and there are no cornered cards. Photography is only ever clipped to a circle. Borders are hairlines (1px waterline) or deliberate rules (2px ink top rule on the service list, 1.5px underline on quote links). Section joins are ripple seams: three stacked wave strokes, 1.5px non-scaling, 28px tall, over the upper band's color with the lower band filled up to the middle line, so the color edge is the water line. In motion they undulate like a slow water surface (a shared rolling swell plus a smaller ripple per line, each with its own phase and speed, peaks about ±3 units), redrawn only while on screen; reduced motion and no-JS get one still wavy frame.
 
 ## Components
 
@@ -251,7 +251,7 @@ About 70 flattened, rinse-tinted domes clustered in the rinse band's top-right, 
 - **Do** set every H1/H2 in 900-weight uppercase with -0.03 to -0.035em tracking.
 - **Do** present offerings as ruled rows with dot marks and lists of big type, not boxed cards.
 - **Do** show real client work only inside soap-bubble frames, layered beneath the foam so the suds lap the base.
-- **Do** join bands with ripple seams drawn over a 50/50 split of the adjoining colors, at 0.35 stroke opacity in water blue or 0.75 in spray blue next to rinse.
+- **Do** join bands with ripple seams whose middle line is the edge of the lower band's color, at 0.35 stroke opacity in water blue or 0.75 in spray blue next to rinse.
 - **Do** make the primary action a gold pill with ink text, and invert every button to ink with gold-bright text on press.
 - **Do** keep the booking action one thumb away on phones via the sticky bar, hidden while the hero CTAs are visible.
 - **Do** keep every moving material paused off screen, and honor reduced motion: the foam renders one still frame, bubbles stop bobbing, loose bubbles and smooth scroll switch off.

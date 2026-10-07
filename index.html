@@ -231,6 +231,7 @@
   /* Ripple seam: water sheeting off a panel. The only ornament. */
   .ripple { color: var(--water); height: 28px; width: 100%; }
   .ripple path { stroke-opacity: .35; }
+  .ripple .ripple-fill { stroke: none; }
   .ripple-light { color: #9cc3de; }
   .ripple-light path { stroke-opacity: .75; }
 
@@ -534,7 +535,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </div>
   </section>
 
-  <svg class="ripple" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:linear-gradient(var(--foam) 50%, var(--mist) 50%)">
+  <svg class="ripple" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:var(--foam)">
+    <path class="ripple-fill" d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14 V 28 H 0 Z" style="fill:var(--mist)"/>
     <path d="M0 8 Q 75 2 150 8 T 300 8 T 450 8 T 600 8 T 750 8 T 900 8 T 1050 8 T 1200 8" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 20 Q 75 14 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
@@ -571,7 +573,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </div>
   </section>
 
-  <svg class="ripple ripple-light" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:linear-gradient(var(--mist) 50%, var(--rinse) 50%)">
+  <svg class="ripple ripple-light" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:var(--mist)">
+    <path class="ripple-fill" d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14 V 28 H 0 Z" style="fill:var(--rinse)"/>
     <path d="M0 8 Q 75 2 150 8 T 300 8 T 450 8 T 600 8 T 750 8 T 900 8 T 1050 8 T 1200 8" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 20 Q 75 14 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
@@ -595,7 +598,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </div>
   </section>
 
-  <svg class="ripple ripple-light" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:linear-gradient(var(--rinse) 50%, var(--foam) 50%)">
+  <svg class="ripple ripple-light" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:var(--rinse)">
+    <path class="ripple-fill" d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14 V 28 H 0 Z" style="fill:var(--foam)"/>
     <path d="M0 8 Q 75 2 150 8 T 300 8 T 450 8 T 600 8 T 750 8 T 900 8 T 1050 8 T 1200 8" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 14 Q 75 8 150 14 T 300 14 T 450 14 T 600 14 T 750 14 T 900 14 T 1050 14 T 1200 14" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
     <path d="M0 20 Q 75 14 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
@@ -1017,6 +1021,78 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     // Open on the first service that has both photos.
     var first = Object.keys(SHOTS).filter(function (k) { return SHOTS[k].before && SHOTS[k].after; })[0];
     show(first || 'full');
+  })();
+
+  // Ripple seams as moving water: each line rides one shared slow swell plus
+  // its own smaller ripple, so the set rolls and reshapes instead of sliding.
+  // The lower band's fill follows the middle line, so the color edge moves
+  // with the water. One loop for every seam; only seams in view are redrawn.
+  (function () {
+    var seams = [].map.call(document.querySelectorAll('svg.ripple'), function (svg) {
+      return {
+        fill: svg.querySelector('.ripple-fill'),
+        lines: svg.querySelectorAll('path:not(.ripple-fill)'),
+        svg: svg,
+        seed: Math.random() * 6.283,
+        on: false
+      };
+    });
+    if (!seams.length) return;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var BASE = [8, 14, 20], STEP = 20, TAU = Math.PI * 2;
+    var raf = 0, live = 0;
+
+    // Height of line i at x, time t (seconds). Swell and ripple drift in
+    // opposite directions and breathe in strength; peaks stay near ±3 units.
+    function wave(i, x, t, seed) {
+      var lag = i * 0.55 + seed;
+      var swell = Math.sin(x * TAU / 300 - t * 0.55 + lag) * (0.8 + 0.25 * Math.sin(t * 0.31 + x / 520 + seed))
+                + 0.45 * Math.sin(x * TAU / 470 + t * 0.27 + lag * 0.6);
+      var own = Math.sin(x * TAU / (150 + i * 35) + t * (0.7 + i * 0.18) + seed * (i + 1)) * (0.5 + 0.3 * Math.sin(t * 0.43 + i * 2.1));
+      return BASE[i] + 1.9 * swell + 0.9 * own;
+    }
+    // Smooth curve through the sampled points (quadratics via midpoints).
+    function line(i, t, seed) {
+      var px = 0, py = wave(i, 0, t, seed), d = 'M0 ' + py.toFixed(2);
+      for (var x = STEP; x <= 1200; x += STEP) {
+        var y = wave(i, x, t, seed);
+        d += ' Q' + px + ' ' + py.toFixed(2) + ' ' + (px + x) / 2 + ' ' + ((py + y) / 2).toFixed(2);
+        px = x; py = y;
+      }
+      return d + ' L1200 ' + py.toFixed(2);
+    }
+    function draw(s, t) {
+      for (var i = 0; i < s.lines.length && i < 3; i++) {
+        var d = line(i, t, s.seed);
+        s.lines[i].setAttribute('d', d);
+        if (i === 1 && s.fill) s.fill.setAttribute('d', d + ' V28 H0 Z');
+      }
+    }
+    function frame(now) {
+      var t = now / 1000;
+      seams.forEach(function (s) { if (s.on) draw(s, t); });
+      raf = live ? requestAnimationFrame(frame) : 0;
+    }
+
+    // Every seam starts on the same kind of frame the loop draws.
+    var t0 = performance.now() / 1000;
+    seams.forEach(function (s) { draw(s, t0); });
+    if (still) return;
+
+    if (!('IntersectionObserver' in window)) {
+      seams.forEach(function (s) { s.on = true; });
+      live = seams.length;
+      raf = requestAnimationFrame(frame);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var s = seams.filter(function (m) { return m.svg === e.target; })[0];
+        if (s.on !== e.isIntersecting) { s.on = e.isIntersecting; live += s.on ? 1 : -1; }
+      });
+      if (live && !raf) raf = requestAnimationFrame(frame);
+    });
+    seams.forEach(function (s) { io.observe(s.svg); });
   })();
 
   // Sticky bar steps aside while the hero's own buttons are on screen.
