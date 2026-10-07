@@ -115,14 +115,14 @@
      17px it stops shrinking and wraps instead. */
   .pitch {
     margin-top: 1.25rem;
-    font-size: clamp(1.0625rem, 3.6vw, 1.625rem);
+    font-size: clamp(1.0625rem, 3.6vw, 1.25rem);
     line-height: 1.35;
     font-weight: 700;
     color: var(--ink);
     white-space: nowrap;
   }
   @media (max-width: 479px) { .pitch { white-space: normal; text-wrap: balance; } }
-  @media (min-width: 1150px) { .pitch { font-size: clamp(1.0625rem, 1.95vw, 1.625rem); } }
+  @media (min-width: 1150px) { .pitch { font-size: clamp(1.0625rem, 1.95vw, 1.25rem); } }
   .actions { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.75rem; max-width: 26rem; }
   .actions .btn { width: 100%; }
   .area-tag { margin-top: 1.25rem; display: flex; align-items: center; gap: .5rem; font-size: .95rem; color: var(--ink-soft); font-weight: 600; }
